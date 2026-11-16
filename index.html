@@ -1,0 +1,619 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="outfit log">
+<title>outfit log</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:#f4f4f1;color:#222;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;font-size:16px}
+.top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:calc(env(safe-area-inset-top,0px) + 32px) 14px 8px}
+.top h1{margin:0;font-size:19px;font-weight:700;white-space:nowrap}
+.top .l{justify-self:start}.top .r{justify-self:end}
+.ibtn{width:36px;height:36px;border-radius:18px;border:1px solid #d8d8d2;background:#fff;font-size:18px;color:#444;padding:0}
+.wrap{padding:6px 14px calc(env(safe-area-inset-bottom,0px) + 84px);max-width:560px;margin:0 auto}
+.card{background:#fff;border-radius:14px;padding:14px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.card h2{margin:0 0 10px;font-size:14px;color:#666;font-weight:600}
+label.f{display:block;font-size:13px;color:#666;margin:10px 0 4px}
+input[type=text],input[type=datetime-local],textarea,input[type=search]{width:100%;font-size:16px;padding:10px;border:1px solid #d8d8d2;border-radius:10px;background:#fff;color:#222;appearance:none;-webkit-appearance:none;min-width:0;font-family:inherit}
+input[type=datetime-local]{height:50px}
+textarea{min-height:70px;resize:vertical}
+.photo{position:relative;width:100%;aspect-ratio:4/5;max-height:46vh;border:1px dashed #c8c8c0;border-radius:12px;background:#fafaf8;display:flex;align-items:center;justify-content:center;overflow:hidden;color:#888;font-size:15px;text-align:center}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.photo input{position:absolute;inset:0;width:100%;height:100%;opacity:0;font-size:0}
+.wx{font-size:15px;line-height:1.6}
+.wx small{color:#888}
+.row{display:flex;gap:8px;align-items:center}
+.btn{border:1px solid #d8d8d2;background:#fff;border-radius:10px;padding:10px 12px;font-size:15px;color:#333;white-space:nowrap;flex-shrink:0}
+.btn.sm{padding:6px 10px;font-size:13px}
+.btn.green{background:#2f8f5b;border-color:#2f8f5b;color:#fff;font-weight:600}
+.btns{display:flex;gap:10px;margin-top:6px}
+.btns .btn{flex:1;padding:13px}
+.stars{display:flex;gap:6px}
+.stars button{flex:1;height:46px;border:1px solid #d8d8d2;background:#fff;border-radius:10px;font-size:22px;color:#c9c9c2;padding:0}
+.stars button.on{color:#e0a526;border-color:#e8c46c;background:#fffaf0}
+.hint{font-size:12px;color:#888;margin-top:4px}
+.res{margin-top:8px}.res button{display:block;width:100%;text-align:left;padding:10px;border:0;border-bottom:1px solid #eee;background:#fff;font-size:15px;color:#222}
+.tabs{position:fixed;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(3,1fr);background:rgba(255,255,255,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid #e4e4de;padding-bottom:env(safe-area-inset-bottom,0px)}
+.tabs button{border:0;background:none;padding:14px 0;font-size:15px;color:#888}
+.tabs button.on{color:#2f8f5b;font-weight:700}
+.mon{font-size:13px;color:#666;margin:14px 2px 6px;font-weight:600}
+.item{display:flex;gap:12px;background:#fff;border-radius:14px;padding:10px;margin-bottom:8px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.item .th{width:64px;height:84px;border-radius:8px;background:#eee;flex-shrink:0;overflow:hidden}
+.item .th img{width:100%;height:100%;object-fit:cover;display:block}
+.item .tx{min-width:0;flex:1;font-size:14px;line-height:1.5}
+.item .d{font-weight:700;font-size:15px}
+.item .s{color:#e0a526;letter-spacing:1px}
+.item .c{color:#777;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.empty{text-align:center;color:#999;padding:40px 0;font-size:14px}
+.edithead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:14px;color:#666}
+.x{width:34px;height:34px;border-radius:17px;border:0;background:#ecece7;position:relative;padding:0}
+.x::before,.x::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:2px;background:#555;border-radius:1px}
+.x::before{transform:translate(-50%,-50%) rotate(45deg)}.x::after{transform:translate(-50%,-50%) rotate(-45deg)}
+.sync-btn{border:1px solid #d8d8d2;background:#fff;color:#777;border-radius:18px;height:36px;padding:0 12px;font-size:13px;font-weight:700;white-space:nowrap;min-width:76px}
+.sync-btn.on{background:#2f8f5b;border-color:#2f8f5b;color:#fff}
+.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 80px);transform:translateX(-50%);background:rgba(40,40,40,.88);color:#fff;padding:10px 16px;border-radius:20px;font-size:14px;width:max-content;max-width:min(90vw,420px);z-index:9;opacity:0;pointer-events:none;transition:opacity .2s}
+.toast.show{opacity:1}
+.hide{display:none!important}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="l"><button class="ibtn" id="reload" aria-label="更新">&#8635;</button></div>
+  <h1>outfit log</h1>
+  <div class="r"><button class="sync-btn hide" id="syncBtn">同期</button></div>
+</div>
+
+<div class="wrap">
+  <!-- 撮影 -->
+  <section id="tab-shot">
+    <div class="edithead hide" id="editHead"><span id="editLabel">記録を編集</span><button class="x" id="editClose" aria-label="閉じる"></button></div>
+    <div class="card">
+      <div class="photo" id="photoBox"><span id="photoHint">タップして写真を撮る / 選ぶ</span><img id="photoImg" class="hide" alt=""><input type="file" id="photoInput" accept="image/*"></div>
+      <label class="f" for="dt">日時</label>
+      <input type="datetime-local" id="dt">
+    </div>
+    <div class="card">
+      <h2>天気と気温</h2>
+      <div class="row" style="justify-content:space-between;margin-bottom:6px">
+        <div id="locName" style="font-size:15px"></div>
+        <button class="btn sm" id="locToggle">今日だけ変える</button>
+      </div>
+      <div id="locPanel" class="hide">
+        <input type="search" id="locQ" placeholder="地名で探す(例: 鳥取)">
+        <div class="res" id="locRes"></div>
+        <button class="btn sm" id="locBase" style="margin-top:8px">基本の地点に戻す</button>
+      </div>
+      <div class="wx" id="wx">&nbsp;</div>
+      <button class="btn sm" id="wxRetry" style="margin-top:6px">取得し直す</button>
+    </div>
+    <div class="card">
+      <h2>お気に入り度</h2>
+      <div class="stars" id="stars"></div>
+      <div class="hint">あとからでも入れられます。もう一度タップすると外れます。</div>
+      <label class="f" for="cm">メモ</label>
+      <textarea id="cm" placeholder="例: 色は好きだけど、パンツが少しきつい"></textarea>
+    </div>
+    <div class="btns">
+      <button class="btn hide" id="delBtn">削除</button>
+      <button class="btn green" id="saveBtn">保存</button>
+    </div>
+  </section>
+
+  <!-- 履歴 -->
+  <section id="tab-hist" class="hide">
+    <div id="histList"></div>
+  </section>
+
+  <!-- 設定 -->
+  <section id="tab-set" class="hide">
+    <div class="card">
+      <h2>基本の天気の地点</h2>
+      <div id="baseName" style="font-size:15px;margin-bottom:8px"></div>
+      <input type="search" id="baseQ" placeholder="地名で探す(例: 御殿場)">
+      <div class="res" id="baseRes"></div>
+      <div class="hint">撮影のたびにこの地点が選ばれます。旅行など、その日だけ変えたいときは撮影画面から変えられます。</div>
+    </div>
+    <div class="card">
+      <h2>バックアップ</h2>
+      <div class="btns" style="margin-top:0">
+        <button class="btn" id="exportBtn">書き出す</button>
+        <button class="btn" id="importBtn">読み込む</button>
+      </div>
+      <input type="file" id="importFile" accept="application/json" class="hide">
+      <div class="hint" id="stat"></div>
+      <div class="hint">写真もファイルに入ります。機種変更や、ブラウザのデータが消えたときの控えになります。</div>
+    </div>
+  </section>
+</div>
+
+<nav class="tabs">
+  <button data-t="shot" class="on">撮影</button>
+  <button data-t="hist">履歴</button>
+  <button data-t="set">設定</button>
+</nav>
+<div class="toast" id="toast"></div>
+
+<!-- Firebase (同期用。読み込めない時はローカルのみで動作) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script>
+(function(){
+"use strict";
+var LS='outfit-log-v1';
+var WD=['日','月','火','水','木','金','土'];
+var WXN={0:'快晴',1:'晴れ',2:'薄曇り',3:'曇り',45:'霧',48:'霧',51:'霧雨',53:'霧雨',55:'霧雨',56:'霧雨',57:'霧雨',61:'雨',63:'雨',65:'強い雨',66:'雨',67:'雨',71:'雪',73:'雪',75:'大雪',77:'雪',80:'にわか雨',81:'にわか雨',82:'強いにわか雨',85:'にわか雪',86:'にわか雪',95:'雷雨',96:'雷雨',99:'雷雨'};
+var $=function(id){return document.getElementById(id)};
+
+/* ---------- 保存 ---------- */
+var db={settings:{base:null},settingsAt:0,records:[],tombs:{}};
+function load(){
+  try{var s=JSON.parse(localStorage.getItem(LS)||'null');if(s){db.settings=s.settings||{base:null};db.settingsAt=s.settingsAt||0;db.records=Array.isArray(s.records)?s.records:[];db.tombs=s.tombs||{};}}catch(e){}
+  if(!db.settings||typeof db.settings!=='object')db.settings={base:null};
+}
+function save(){localStorage.setItem(LS,JSON.stringify(db))}
+
+var idbP=null;
+function idb(){
+  if(idbP)return idbP;
+  idbP=new Promise(function(res,rej){
+    var r=indexedDB.open('outfit-log',1);
+    r.onupgradeneeded=function(){r.result.createObjectStore('photos')};
+    r.onsuccess=function(){res(r.result)};r.onerror=function(){rej(r.error)};
+  });
+  return idbP;
+}
+function photoPut(id,blob){return idb().then(function(d){return new Promise(function(res,rej){var t=d.transaction('photos','readwrite');t.objectStore('photos').put(blob,id);t.oncomplete=res;t.onerror=function(){rej(t.error)}})})}
+function photoGet(id){return idb().then(function(d){return new Promise(function(res,rej){var q=d.transaction('photos').objectStore('photos').get(id);q.onsuccess=function(){res(q.result||null)};q.onerror=function(){rej(q.error)}})})}
+function photoDel(id){return idb().then(function(d){return new Promise(function(res){var t=d.transaction('photos','readwrite');t.objectStore('photos').delete(id);t.oncomplete=res;t.onerror=res})})}
+
+/* ---------- 小道具 ---------- */
+function pad(n){return n<10?'0'+n:''+n}
+function dtValue(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())+'T'+pad(d.getHours())+':'+pad(d.getMinutes())}
+function parseDt(v){var m=/^(\d{4})-(\d\d)-(\d\d)T(\d\d):(\d\d)/.exec(v||'');return m?{y:+m[1],mo:+m[2],d:+m[3],h:+m[4],mi:+m[5]}:null}
+function dateKey(v){return String(v||'').slice(0,10)}
+function wdOf(key){var p=key.split('-');return WD[new Date(+p[0],+p[1]-1,+p[2]).getDay()]}
+function jpDate(key){var p=key.split('-');return (+p[0])+'年'+(+p[1])+'月'+(+p[2])+'日('+wdOf(key)+')'}
+function uid(){return 'o'+Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+var toastT=null;
+function toast(m){var t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(function(){t.classList.remove('show')},2200)}
+function stars(n){var s='';for(var i=1;i<=5;i++)s+=i<=n?'★':'☆';return s}
+
+/* ---------- 写真の縮小 ---------- */
+function shrink(file,MAX,Q){
+  MAX=MAX||1280;Q=Q||0.8;
+  function draw(src,w,h){
+    var k=Math.min(1,MAX/Math.max(w,h));var c=document.createElement('canvas');
+    c.width=Math.round(w*k);c.height=Math.round(h*k);
+    c.getContext('2d').drawImage(src,0,0,c.width,c.height);
+    return new Promise(function(res,rej){c.toBlob(function(b){b?res(b):rej(new Error('blob'))},'image/jpeg',Q)});
+  }
+  if(window.createImageBitmap){
+    return createImageBitmap(file,{imageOrientation:'from-image'}).then(function(bm){return draw(bm,bm.width,bm.height)});
+  }
+  return new Promise(function(res,rej){
+    var u=URL.createObjectURL(file),im=new Image();
+    im.onload=function(){draw(im,im.naturalWidth,im.naturalHeight).then(function(b){URL.revokeObjectURL(u);res(b)},rej)};
+    im.onerror=rej;im.src=u;
+  });
+}
+
+/* ---------- 天気(Open-Meteo) ---------- */
+function fetchWeather(loc,dtv){
+  var p=parseDt(dtv);if(!p||!loc)return Promise.reject(new Error('no'));
+  var key=p.y+'-'+pad(p.mo)+'-'+pad(p.d);
+  var days=(Date.now()-new Date(p.y,p.mo-1,p.d).getTime())/86400000;
+  var base=days>80?'https://archive-api.open-meteo.com/v1/archive':'https://api.open-meteo.com/v1/forecast';
+  var url=base+'?latitude='+loc.lat+'&longitude='+loc.lon+'&hourly=temperature_2m&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto&start_date='+key+'&end_date='+key;
+  return fetch(url).then(function(r){if(!r.ok)throw new Error('http');return r.json()}).then(function(j){
+    var dd=j.daily||{},hh=j.hourly||{};
+    var tn=(hh.temperature_2m&&hh.temperature_2m[p.h]!=null)?hh.temperature_2m[p.h]:null;
+    return {code:dd.weather_code?dd.weather_code[0]:null,tmax:dd.temperature_2m_max?dd.temperature_2m_max[0]:null,tmin:dd.temperature_2m_min?dd.temperature_2m_min[0]:null,tnow:tn,loc:{name:loc.name,lat:loc.lat,lon:loc.lon},fetchedAt:Date.now()};
+  });
+}
+function geoSearch(q){
+  var url='https://geocoding-api.open-meteo.com/v1/search?name='+encodeURIComponent(q)+'&count=6&language=ja&format=json';
+  return fetch(url).then(function(r){return r.json()}).then(function(j){
+    return (j.results||[]).map(function(x){return {name:x.name+(x.admin1&&x.admin1!==x.name?'('+x.admin1+')':''),lat:x.latitude,lon:x.longitude}});
+  });
+}
+function wxText(w){
+  if(!w)return '';
+  var t=[];
+  if(w.code!=null)t.push((WXN[w.code]||'天気不明'));
+  var a=[];
+  if(w.tmax!=null)a.push('最高 '+Math.round(w.tmax)+'°');
+  if(w.tmin!=null)a.push('最低 '+Math.round(w.tmin)+'°');
+  if(w.tnow!=null)a.push('撮影時 '+Math.round(w.tnow)+'°');
+  return t.join('')+(a.length?'<br><small>'+a.join(' / ')+'</small>':'');
+}
+function shortWx(w){
+  if(!w)return '';
+  var s=(w.code!=null?(WXN[w.code]||''):'');
+  if(w.tmax!=null&&w.tmin!=null)s+=' '+Math.round(w.tmin)+'〜'+Math.round(w.tmax)+'°';
+  else if(w.tnow!=null)s+=' '+Math.round(w.tnow)+'°';
+  return s.trim();
+}
+
+/* ---------- 地点の検索部品 ---------- */
+function locSearch(inp,resEl,onPick){
+  var timer=null,seq=0;
+  inp.addEventListener('input',function(){
+    clearTimeout(timer);var q=inp.value.trim();
+    if(!q){resEl.innerHTML='';return}
+    timer=setTimeout(function(){
+      var my=++seq;
+      geoSearch(q).then(function(list){
+        if(my!==seq)return;
+        if(!list.length){resEl.innerHTML='<div class="hint">見つかりませんでした</div>';return}
+        resEl.innerHTML='';
+        list.forEach(function(x){
+          var b=document.createElement('button');b.type='button';b.textContent=x.name;
+          b.addEventListener('click',function(){onPick(x);inp.value='';resEl.innerHTML=''});
+          resEl.appendChild(b);
+        });
+      }).catch(function(){resEl.innerHTML='<div class="hint">検索できませんでした(通信を確認)</div>'});
+    },350);
+  });
+}
+
+/* ---------- 撮影フォーム ---------- */
+var cur=null; // 今のフォームの状態
+function newCur(){
+  return {id:null,photoAt:0,photoBlob:null,photoUrl:null,dt:dtValue(new Date()),fav:0,comment:'',loc:db.settings.base?{name:db.settings.base.name,lat:db.settings.base.lat,lon:db.settings.base.lon}:null,locIsBase:true,weather:null,wxBusy:false};
+}
+function setPhotoUrl(u){
+  if(cur.photoUrl&&cur.photoUrl.indexOf('blob:')===0)URL.revokeObjectURL(cur.photoUrl);
+  cur.photoUrl=u;
+  var im=$('photoImg');
+  if(u){im.src=u;im.classList.remove('hide');$('photoHint').classList.add('hide')}
+  else{im.removeAttribute('src');im.classList.add('hide');$('photoHint').classList.remove('hide')}
+}
+function renderForm(){
+  $('dt').value=cur.dt;
+  $('cm').value=cur.comment;
+  renderStars();
+  renderLoc();
+  renderWx();
+  var edit=!!cur.id;
+  $('editHead').classList.toggle('hide',!edit);
+  $('delBtn').classList.toggle('hide',!edit);
+  $('locPanel').classList.add('hide');
+  $('locToggle').textContent=edit?'地点を変える':'今日だけ変える';
+}
+function renderStars(){
+  var h='';for(var i=1;i<=5;i++)h+='<button type="button" data-n="'+i+'" class="'+(i<=cur.fav?'on':'')+'" aria-label="'+i+'">★</button>';
+  $('stars').innerHTML=h;
+}
+function renderLoc(){
+  var l=cur.loc;
+  $('locName').innerHTML=l?esc(l.name)+(cur.locIsBase&&!cur.id?' <small style="color:#888">(基本)</small>':''):'<span style="color:#c0392b">地点が未設定です(設定で決めるか、下で探す)</span>';
+}
+function renderWx(){
+  var el=$('wx');
+  if(cur.wxBusy){el.innerHTML='<small>取得中...</small>';return}
+  if(cur.weather){el.innerHTML=wxText(cur.weather);return}
+  el.innerHTML='<small>'+(cur.loc?'まだ取得していません':'地点を決めると自動で取得します')+'</small>';
+}
+var wxSeq=0;
+function refreshWx(){
+  if(!cur.loc||!parseDt(cur.dt)){cur.weather=null;renderWx();return}
+  var my=++wxSeq;cur.wxBusy=true;renderWx();
+  fetchWeather(cur.loc,cur.dt).then(function(w){
+    if(my!==wxSeq)return;cur.weather=w;cur.wxBusy=false;renderWx();
+  }).catch(function(){
+    if(my!==wxSeq)return;cur.wxBusy=false;cur.weather=null;
+    $('wx').innerHTML='<small>取得できませんでした(通信を確認して「取得し直す」)</small>';
+  });
+}
+
+$('photoInput').addEventListener('change',function(e){
+  var f=e.target.files&&e.target.files[0];if(!f)return;
+  shrink(f).then(function(b){cur.photoBlob=b;setPhotoUrl(URL.createObjectURL(b))}).catch(function(){toast('写真を読み込めませんでした')});
+  e.target.value='';
+});
+$('dt').addEventListener('change',function(){cur.dt=$('dt').value;refreshWx()});
+$('cm').addEventListener('input',function(){cur.comment=$('cm').value});
+$('stars').addEventListener('click',function(e){
+  var b=e.target.closest('button');if(!b)return;
+  var n=+b.getAttribute('data-n');cur.fav=(cur.fav===n)?0:n;renderStars();
+});
+$('wxRetry').addEventListener('click',refreshWx);
+$('locToggle').addEventListener('click',function(){$('locPanel').classList.toggle('hide')});
+locSearch($('locQ'),$('locRes'),function(x){
+  cur.loc=x;cur.locIsBase=false;$('locPanel').classList.add('hide');renderLoc();refreshWx();
+});
+$('locBase').addEventListener('click',function(){
+  var b=db.settings.base;
+  cur.loc=b?{name:b.name,lat:b.lat,lon:b.lon}:null;cur.locIsBase=true;
+  $('locPanel').classList.add('hide');renderLoc();refreshWx();
+});
+
+function resetForm(){cur=newCur();setPhotoUrl(null);renderForm();refreshWx()}
+$('editClose').addEventListener('click',resetForm);
+
+$('saveBtn').addEventListener('click',function(){
+  if(!parseDt(cur.dt)){toast('日時を入れてください');return}
+  if(!cur.photoBlob&&!cur.photoUrl&&!cur.fav&&!cur.comment){
+    if(!confirm('写真もお気に入り度もメモも空です。このまま保存しますか？'))return;
+  }
+  var id=cur.id||uid();
+  var rec={id:id,dt:cur.dt,date:dateKey(cur.dt),fav:cur.fav,comment:cur.comment,weather:cur.weather,hasPhoto:!!(cur.photoBlob||cur.photoUrl),photoAt:cur.photoBlob?Date.now():(cur.photoAt||0),updatedAt:Date.now()};
+  var old=db.records.find(function(r){return r.id===id});
+  if(old&&!cur.photoBlob)rec.syncedPhotoAt=old.syncedPhotoAt||0;
+  delete db.tombs[id];
+  var i=db.records.findIndex(function(r){return r.id===id});
+  if(i>=0)db.records[i]=rec;else db.records.push(rec);
+  var p=cur.photoBlob?photoPut(id,cur.photoBlob):Promise.resolve();
+  p.then(function(){save();toast('保存しました');resetForm();pushRecord(rec).catch(syncErr)}).catch(function(){
+    // 写真が保存できなかったときは、記録だけ残して知らせる
+    rec.hasPhoto=false;save();toast('写真を保存できませんでした(記録のみ保存)');resetForm();pushRecord(rec).catch(syncErr);
+  });
+});
+$('delBtn').addEventListener('click',function(){
+  if(!cur.id)return;
+  if(!confirm('この記録を削除しますか？(写真も消えます)'))return;
+  var id=cur.id;
+  db.records=db.records.filter(function(r){return r.id!==id});
+  db.tombs[id]=Date.now();
+  save();delete urlCache[id];photoDel(id).then(function(){toast('削除しました');resetForm();pushTomb(id).catch(syncErr)});
+});
+
+/* ---------- 履歴 ---------- */
+var urlCache={};
+function renderHist(){
+  var box=$('histList');
+  var list=db.records.slice().sort(function(a,b){return a.dt<b.dt?1:a.dt>b.dt?-1:0});
+  if(!list.length){box.innerHTML='<div class="empty">まだ記録がありません</div>';return}
+  var html='',lastM='';
+  list.forEach(function(r){
+    var m=r.date.slice(0,7);
+    if(m!==lastM){html+='<div class="mon">'+(+m.slice(0,4))+'年'+(+m.slice(5,7))+'月</div>';lastM=m}
+    var wx=shortWx(r.weather);
+    html+='<div class="item" data-id="'+esc(r.id)+'"><div class="th">'+(r.hasPhoto?'<img data-pid="'+esc(r.id)+'" alt="">':'')+'</div><div class="tx"><div class="d">'+jpDate(r.date)+'</div>'
+      +(wx?'<div>'+esc(wx)+'</div>':'')
+      +(r.fav?'<div class="s">'+stars(r.fav)+'</div>':'')
+      +(r.comment?'<div class="c">'+esc(r.comment)+'</div>':'')+'</div></div>';
+  });
+  box.innerHTML=html;
+  box.querySelectorAll('img[data-pid]').forEach(function(im){
+    var id=im.getAttribute('data-pid');
+    if(urlCache[id]){im.src=urlCache[id];return}
+    photoGet(id).then(function(b){if(b){urlCache[id]=URL.createObjectURL(b);im.src=urlCache[id]}});
+  });
+}
+$('histList').addEventListener('click',function(e){
+  var it=e.target.closest('.item');if(!it)return;
+  var id=it.getAttribute('data-id');
+  var r=db.records.find(function(x){return x.id===id});if(!r)return;
+  cur={id:r.id,photoAt:r.photoAt||0,photoBlob:null,photoUrl:null,dt:r.dt,fav:r.fav||0,comment:r.comment||'',loc:r.weather&&r.weather.loc?r.weather.loc:(db.settings.base||null),locIsBase:false,weather:r.weather||null,wxBusy:false};
+  setPhotoUrl(null);
+  if(r.hasPhoto)photoGet(r.id).then(function(b){if(b&&cur.id===r.id&&!cur.photoBlob)setPhotoUrl(URL.createObjectURL(b))});
+  renderForm();showTab('shot');window.scrollTo(0,0);
+});
+
+/* ---------- 設定 ---------- */
+function renderSet(){
+  var b=db.settings.base;
+  $('baseName').textContent=b?b.name:'未設定';
+  $('stat').textContent='記録 '+db.records.length+' 件';
+}
+locSearch($('baseQ'),$('baseRes'),function(x){
+  db.settings.base={name:x.name,lat:x.lat,lon:x.lon};db.settingsAt=Date.now();save();renderSet();pushSettings().catch(syncErr);
+  if(!cur.id&&cur.locIsBase){cur.loc={name:x.name,lat:x.lat,lon:x.lon};renderLoc();refreshWx()}
+  toast('基本の地点を変えました');
+});
+function blobToDataUrl(b){return new Promise(function(res){var r=new FileReader();r.onload=function(){res(r.result)};r.readAsDataURL(b)})}
+$('exportBtn').addEventListener('click',function(){
+  var out={app:'outfit-log',version:1,exportedAt:new Date().toISOString(),settings:db.settings,records:db.records,photos:{}};
+  Promise.all(db.records.filter(function(r){return r.hasPhoto}).map(function(r){
+    return photoGet(r.id).then(function(b){return b?blobToDataUrl(b).then(function(u){out.photos[r.id]=u}):null});
+  })).then(function(){
+    var blob=new Blob([JSON.stringify(out)],{type:'application/json'});
+    var a=document.createElement('a');a.href=URL.createObjectURL(blob);
+    var d=new Date();a.download='outfit-log-backup-'+d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+'.json';
+    document.body.appendChild(a);a.click();a.remove();toast('書き出しました');
+  });
+});
+$('importBtn').addEventListener('click',function(){$('importFile').click()});
+$('importFile').addEventListener('change',function(e){
+  var f=e.target.files&&e.target.files[0];e.target.value='';if(!f)return;
+  var r=new FileReader();
+  r.onload=function(){
+    var j;try{j=JSON.parse(r.result)}catch(x){toast('読み込めないファイルです');return}
+    if(!j||j.app!=='outfit-log'||!Array.isArray(j.records)){toast('このアプリのバックアップではありません');return}
+    if(!confirm('今の記録('+db.records.length+'件)を、ファイルの内容('+j.records.length+'件)で置き換えます。よろしいですか？'))return;
+    var photos=j.photos||{};
+    var ids=Object.keys(photos);
+    Promise.all(db.records.map(function(x){return photoDel(x.id)})).then(function(){
+      return Promise.all(ids.map(function(id){return fetch(photos[id]).then(function(q){return q.blob()}).then(function(b){return photoPut(id,b)})}));
+    }).then(function(){
+      var keep={},now=Date.now();
+      j.records.forEach(function(r){keep[r.id]=1});
+      db.records.forEach(function(o){if(!keep[o.id])db.tombs[o.id]=now});
+      j.records.forEach(function(r){delete db.tombs[r.id];r.updatedAt=now;r.photoAt=r.hasPhoto?now:0;r.syncedPhotoAt=0});
+      db.settings=j.settings||{base:null};db.settingsAt=now;db.records=j.records;urlCache={};save();
+      resetForm();renderSet();renderHist();toast('読み込みました');
+      pushAll(null).catch(syncErr);
+    }).catch(function(){toast('読み込み中に失敗しました')});
+  };
+  r.readAsText(f);
+});
+
+/* ---------- タブ・更新 ---------- */
+function showTab(t){
+  ['shot','hist','set'].forEach(function(k){$('tab-'+k).classList.toggle('hide',k!==t)});
+  document.querySelectorAll('.tabs button').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-t')===t)});
+  if(t==='hist')renderHist();
+  if(t==='set')renderSet();
+}
+document.querySelector('.tabs').addEventListener('click',function(e){var b=e.target.closest('button');if(b)showTab(b.getAttribute('data-t'))});
+$('reload').addEventListener('click',function(){location.reload()});
+
+load();
+cur=newCur();renderForm();refreshWx();renderSet();
+
+/* ---------- クラウド同期(Firebase + Googleログイン) ---------- */
+// 他のアプリと同じFirebaseプロジェクト。保存先は users/{uid}/apps/outfit-log 配下。
+// 写真があるので1文書に収まらない(上限1MB)。記録は1件ごとの文書、写真は同期用に縮小して別の文書に置く。
+var FBC={
+  apiKey:"AIzaSyAMy7k0bx1IyOu2eBCeiOnwclYtSEfrigY",
+  authDomain:"nemui-neko-apps.firebaseapp.com",
+  projectId:"nemui-neko-apps",
+  storageBucket:"nemui-neko-apps.firebasestorage.app",
+  messagingSenderId:"433296418616",
+  appId:"1:433296418616:web:bf83c521c8355487c883cd"
+};
+var fb={user:null,db:null,unsubR:null,unsubS:null,warned:false};
+function appDoc(){return fb.db.collection('users').doc(fb.user.uid).collection('apps').doc('outfit-log')}
+function recCol(){return appDoc().collection('records')}
+function phCol(){return appDoc().collection('photos')}
+function syncErr(e){
+  console.warn(e);
+  if(!fb.warned){fb.warned=true;toast('同期に失敗しました(通信か、Firestoreのルールを確認)')}
+}
+function recIdx(id){return db.records.findIndex(function(r){return r.id===id})}
+function clean(o){return JSON.parse(JSON.stringify(o))}
+
+function uploadPhoto(r){
+  return photoGet(r.id).then(function(b){
+    if(!b)return;
+    return shrink(b,800,0.7).then(blobToDataUrl).then(function(u){
+      return phCol().doc(r.id).set({data:u,photoAt:r.photoAt||0});
+    }).then(function(){r.syncedPhotoAt=r.photoAt||0;save()});
+  });
+}
+function pushRecord(r){
+  if(!fb.user)return Promise.resolve();
+  var p=Promise.resolve();
+  if(r.hasPhoto&&(r.photoAt||0)>(r.syncedPhotoAt||0))p=uploadPhoto(r);
+  return p.then(function(){
+    return recCol().doc(r.id).set(clean({id:r.id,dt:r.dt,date:r.date,fav:r.fav||0,comment:r.comment||'',weather:r.weather||null,hasPhoto:!!r.hasPhoto,photoAt:r.photoAt||0,updatedAt:r.updatedAt||0,deleted:false}));
+  });
+}
+function pushTomb(id){
+  if(!fb.user)return Promise.resolve();
+  return recCol().doc(id).set({id:id,deleted:true,updatedAt:db.tombs[id]||Date.now()}).then(function(){return phCol().doc(id).delete()});
+}
+function pushSettings(){
+  if(!fb.user)return Promise.resolve();
+  return appDoc().set(clean({base:db.settings.base||null,updatedAt:db.settingsAt||0}));
+}
+function pushAll(skipIds){
+  if(!fb.user)return Promise.resolve();
+  var jobs=[];
+  db.records.forEach(function(r){if(!skipIds||!skipIds[r.id])jobs.push(pushRecord(r))});
+  Object.keys(db.tombs).forEach(function(id){if(!skipIds||!skipIds[id])jobs.push(pushTomb(id))});
+  return Promise.all(jobs);
+}
+function downloadPhoto(r,d){
+  return phCol().doc(r.id).get().then(function(snap){
+    if(!snap.exists)return;
+    var x=snap.data();
+    return fetch(x.data).then(function(q){return q.blob()}).then(function(b){return photoPut(r.id,b)}).then(function(){
+      r.hasPhoto=true;r.photoAt=x.photoAt||d.photoAt||0;r.syncedPhotoAt=r.photoAt;delete urlCache[r.id];save();
+    });
+  });
+}
+// 1件のクラウドの記録を、更新時刻を比べて取り込む(新しい方が勝つ)
+function applyRemoteRec(d){
+  var id=d.id,i=recIdx(id),loc=i>=0?db.records[i]:null,rAt=d.updatedAt||0;
+  if(d.deleted){
+    if(loc&&(loc.updatedAt||0)>rAt)return pushRecord(loc);
+    if(loc){db.records.splice(i,1);delete urlCache[id]}
+    db.tombs[id]=rAt;save();return photoDel(id);
+  }
+  var tomb=db.tombs[id]||0;
+  if(tomb>rAt)return pushTomb(id);
+  if(loc&&(loc.updatedAt||0)>rAt)return pushRecord(loc);
+  if(loc&&(loc.updatedAt||0)===rAt){
+    if(d.hasPhoto&&(loc.photoAt||0)<(d.photoAt||0))return downloadPhoto(loc,d);
+    return Promise.resolve();
+  }
+  var rec={id:id,dt:d.dt,date:d.date,fav:d.fav||0,comment:d.comment||'',weather:d.weather||null,hasPhoto:loc?!!loc.hasPhoto:false,photoAt:loc?loc.photoAt||0:0,syncedPhotoAt:loc?loc.syncedPhotoAt||0:0,updatedAt:rAt};
+  if(loc)db.records[i]=rec;else db.records.push(rec);
+  delete db.tombs[id];save();
+  if(d.hasPhoto&&(rec.photoAt||0)<(d.photoAt||0))return downloadPhoto(rec,d);
+  return Promise.resolve();
+}
+function applyRemoteSettings(r){
+  if((r.updatedAt||0)>(db.settingsAt||0)){
+    db.settings.base=r.base||null;db.settingsAt=r.updatedAt||0;save();
+    if(!cur.id&&cur.locIsBase){cur.loc=db.settings.base?{name:db.settings.base.name,lat:db.settings.base.lat,lon:db.settings.base.lon}:null;renderLoc();refreshWx()}
+    return true;
+  }
+  if((r.updatedAt||0)<(db.settingsAt||0))pushSettings().catch(syncErr);
+  return false;
+}
+function refreshUI(){
+  renderSet();
+  if(!$('tab-hist').classList.contains('hide'))renderHist();
+}
+function startSync(){
+  fb.warned=false;
+  var first=true;
+  fb.unsubS=appDoc().onSnapshot(function(s){
+    if(s.metadata.hasPendingWrites)return;
+    if(!s.exists){if(db.settings.base&&db.settingsAt)pushSettings().catch(syncErr);return}
+    if(applyRemoteSettings(s.data()))refreshUI();
+  },syncErr);
+  fb.unsubR=recCol().onSnapshot(function(snap){
+    var docs=[];
+    snap.docChanges().forEach(function(c){
+      if(c.type==='removed')return;
+      if(c.doc.metadata.hasPendingWrites)return;
+      docs.push(c.doc.data());
+    });
+    var seen={};
+    snap.forEach(function(x){seen[x.id]=1});
+    Promise.all(docs.map(applyRemoteRec)).then(function(){
+      if(first){first=false;return pushAll(seen)}
+    }).then(function(){if(docs.length)refreshUI()}).catch(syncErr);
+  },syncErr);
+}
+function stopSync(){
+  if(fb.unsubR){fb.unsubR();fb.unsubR=null}
+  if(fb.unsubS){fb.unsubS();fb.unsubS=null}
+}
+function renderSyncUI(){
+  var b=$('syncBtn');
+  if(fb.user){b.textContent='同期中';b.classList.add('on');b.title=(fb.user.email||'')+' / タップでログアウト'}
+  else{b.textContent='同期';b.classList.remove('on');b.title='Googleでログインして同期'}
+}
+function onAuthChanged(u){
+  fb.user=u;renderSyncUI();stopSync();
+  if(u)startSync();
+}
+function onSyncClick(){
+  if(typeof firebase==='undefined'){toast('同期にはネット接続が必要です');return}
+  if(fb.user){
+    if(confirm('同期をオフにしますか？(ログアウト)\n記録はこの端末に残ります'))firebase.auth().signOut();
+    return;
+  }
+  var prov=new firebase.auth.GoogleAuthProvider();
+  firebase.auth().signInWithPopup(prov).catch(function(err){
+    var c=err&&err.code;
+    if(c==='auth/popup-blocked'||c==='auth/cancelled-popup-request'||c==='auth/operation-not-supported-in-this-environment'||c==='auth/popup-closed-by-user'){
+      firebase.auth().signInWithRedirect(prov);
+    }else{console.warn(err);toast('ログインできませんでした')}
+  });
+}
+(function initSync(){
+  if(typeof firebase==='undefined')return; // SDK未読込(オフライン等)→ローカルのみ
+  try{
+    firebase.initializeApp(FBC);
+    fb.db=firebase.firestore();
+    firebase.auth().getRedirectResult().catch(function(){});
+    firebase.auth().onAuthStateChanged(onAuthChanged);
+  }catch(e){console.warn('sync init failed',e);return}
+  var b=$('syncBtn');b.classList.remove('hide');b.addEventListener('click',onSyncClick);renderSyncUI();
+})();
+})();
+</script>
+</body>
+</html>
