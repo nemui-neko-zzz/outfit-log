@@ -50,9 +50,8 @@ textarea{min-height:70px;resize:vertical}
 .item .c{color:#777;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .empty{text-align:center;color:#999;padding:40px 0;font-size:14px}
 .edithead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:14px;color:#666}
-.x{width:34px;height:34px;border-radius:17px;border:0;background:#ecece7;position:relative;padding:0}
-.x::before,.x::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:2px;background:#555;border-radius:1px}
-.x::before{transform:translate(-50%,-50%) rotate(45deg)}.x::after{transform:translate(-50%,-50%) rotate(-45deg)}
+.back{border:0;background:none;color:#2f8f5b;font-size:16px;font-weight:600;padding:6px 8px 6px 0;white-space:nowrap}
+.edithead .sp{width:52px}
 .sync-btn{border:1px solid #d8d8d2;background:#fff;color:#777;border-radius:18px;height:36px;padding:0 12px;font-size:13px;font-weight:700;white-space:nowrap;min-width:76px}
 .sync-btn.on{background:#2f8f5b;border-color:#2f8f5b;color:#fff}
 .toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 80px);transform:translateX(-50%);background:rgba(40,40,40,.88);color:#fff;padding:10px 16px;border-radius:20px;font-size:14px;width:max-content;max-width:min(90vw,420px);z-index:9;opacity:0;pointer-events:none;transition:opacity .2s}
@@ -70,7 +69,7 @@ textarea{min-height:70px;resize:vertical}
 <div class="wrap">
   <!-- 撮影 -->
   <section id="tab-shot">
-    <div class="edithead hide" id="editHead"><span id="editLabel">記録を編集</span><button class="x" id="editClose" aria-label="閉じる"></button></div>
+    <div class="edithead hide" id="editHead"><button class="back" id="editBack">&#8249; 戻る</button><span id="editLabel">記録を編集</span><span class="sp"></span></div>
     <div class="card">
       <div class="photo" id="photoBox"><span id="photoHint">タップして写真を撮る / 選ぶ</span><img id="photoImg" class="hide" alt=""><input type="file" id="photoInput" accept="image/*"></div>
       <label class="f" for="dt">日時</label>
@@ -335,13 +334,15 @@ $('locBase').addEventListener('click',function(){
 });
 
 function resetForm(){cur=newCur();setPhotoUrl(null);renderForm();refreshWx()}
-$('editClose').addEventListener('click',resetForm);
+function backToHist(){resetForm();showTab('hist');window.scrollTo(0,0)}
+$('editBack').addEventListener('click',backToHist);
 
 $('saveBtn').addEventListener('click',function(){
   if(!parseDt(cur.dt)){toast('日時を入れてください');return}
   if(!cur.photoBlob&&!cur.photoUrl&&!cur.fav&&!cur.comment){
     if(!confirm('写真もお気に入り度もメモも空です。このまま保存しますか？'))return;
   }
+  var wasEdit=!!cur.id;
   var id=cur.id||uid();
   var rec={id:id,dt:cur.dt,date:dateKey(cur.dt),fav:cur.fav,comment:cur.comment,weather:cur.weather,hasPhoto:!!(cur.photoBlob||cur.photoUrl),photoAt:cur.photoBlob?Date.now():(cur.photoAt||0),updatedAt:Date.now()};
   var old=db.records.find(function(r){return r.id===id});
@@ -350,9 +351,9 @@ $('saveBtn').addEventListener('click',function(){
   var i=db.records.findIndex(function(r){return r.id===id});
   if(i>=0)db.records[i]=rec;else db.records.push(rec);
   var p=cur.photoBlob?photoPut(id,cur.photoBlob):Promise.resolve();
-  p.then(function(){save();toast('保存しました');resetForm();pushRecord(rec).catch(syncErr)}).catch(function(){
+  p.then(function(){save();toast('保存しました');if(wasEdit)backToHist();else resetForm();pushRecord(rec).catch(syncErr)}).catch(function(){
     // 写真が保存できなかったときは、記録だけ残して知らせる
-    rec.hasPhoto=false;save();toast('写真を保存できませんでした(記録のみ保存)');resetForm();pushRecord(rec).catch(syncErr);
+    rec.hasPhoto=false;save();toast('写真を保存できませんでした(記録のみ保存)');if(wasEdit)backToHist();else resetForm();pushRecord(rec).catch(syncErr);
   });
 });
 $('delBtn').addEventListener('click',function(){
@@ -361,7 +362,7 @@ $('delBtn').addEventListener('click',function(){
   var id=cur.id;
   db.records=db.records.filter(function(r){return r.id!==id});
   db.tombs[id]=Date.now();
-  save();delete urlCache[id];photoDel(id).then(function(){toast('削除しました');resetForm();pushTomb(id).catch(syncErr)});
+  save();delete urlCache[id];photoDel(id).then(function(){toast('削除しました');backToHist();pushTomb(id).catch(syncErr)});
 });
 
 /* ---------- 履歴 ---------- */
