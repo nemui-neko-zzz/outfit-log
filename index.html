@@ -18,27 +18,35 @@ html,body{margin:0;background:#f4f4f1;color:#222;font-family:-apple-system,Blink
 .card{background:#fff;border-radius:14px;padding:14px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
 .card h2{margin:0 0 10px;font-size:14px;color:#666;font-weight:600}
 label.f{display:block;font-size:13px;color:#666;margin:10px 0 4px}
-input[type=text],input[type=datetime-local],textarea,input[type=search]{width:100%;font-size:16px;padding:10px;border:1px solid #d8d8d2;border-radius:10px;background:#fff;color:#222;appearance:none;-webkit-appearance:none;min-width:0;font-family:inherit}
+input[type=text],input[type=password],input[type=number],input[type=datetime-local],input[type=date],textarea,input[type=search],select{width:100%;font-size:16px;padding:10px;border:1px solid #d8d8d2;border-radius:10px;background:#fff;color:#222;appearance:none;-webkit-appearance:none;min-width:0;font-family:inherit}
 input[type=datetime-local]{height:50px}
+input[type=date],input[type=text],input[type=number],input[type=password],select{height:46px}
+select{padding-right:30px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23888' stroke-width='2'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center}
 textarea{min-height:70px;resize:vertical}
 .photo{position:relative;width:100%;aspect-ratio:4/5;max-height:46vh;border:1px dashed #c8c8c0;border-radius:12px;background:#fafaf8;display:flex;align-items:center;justify-content:center;overflow:hidden;color:#888;font-size:15px;text-align:center}
 .photo img{width:100%;height:100%;object-fit:cover;display:block}
 .photo input{position:absolute;inset:0;width:100%;height:100%;opacity:0;font-size:0}
+.photo.sq{aspect-ratio:1/1;max-height:40vh}
+.photo.sq img{object-fit:contain;background:#fff}
 .wx{font-size:15px;line-height:1.6}
 .wx small{color:#888}
 .row{display:flex;gap:8px;align-items:center}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .btn{border:1px solid #d8d8d2;background:#fff;border-radius:10px;padding:10px 12px;font-size:15px;color:#333;white-space:nowrap;flex-shrink:0}
 .btn.sm{padding:6px 10px;font-size:13px}
 .btn.green{background:#2f8f5b;border-color:#2f8f5b;color:#fff;font-weight:600}
+.btn.on{background:#eaf6ef;border-color:#2f8f5b;color:#2f8f5b;font-weight:600}
 .btns{display:flex;gap:10px;margin-top:6px}
 .btns .btn{flex:1;padding:13px}
 .stars{display:flex;gap:6px}
 .stars button{flex:1;height:46px;border:1px solid #d8d8d2;background:#fff;border-radius:10px;font-size:22px;color:#c9c9c2;padding:0}
 .stars button.on{color:#e0a526;border-color:#e8c46c;background:#fffaf0}
-.hint{font-size:12px;color:#888;margin-top:4px}
+.hint{font-size:12px;color:#888;margin-top:4px;line-height:1.5}
 .res{margin-top:8px}.res button{display:block;width:100%;text-align:left;padding:10px;border:0;border-bottom:1px solid #eee;background:#fff;font-size:15px;color:#222}
-.tabs{position:fixed;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(3,1fr);background:rgba(255,255,255,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid #e4e4de;padding-bottom:env(safe-area-inset-bottom,0px)}
-.tabs button{border:0;background:none;padding:14px 0;font-size:15px;color:#888}
+.sync-btn{border:1px solid #d8d8d2;background:#fff;color:#777;border-radius:18px;height:36px;padding:0 12px;font-size:13px;font-weight:700;white-space:nowrap;min-width:76px}
+.sync-btn.on{background:#2f8f5b;border-color:#2f8f5b;color:#fff}
+.tabs{position:fixed;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(4,1fr);background:rgba(255,255,255,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid #e4e4de;padding-bottom:env(safe-area-inset-bottom,0px);z-index:5}
+.tabs button{border:0;background:none;padding:14px 0;font-size:14px;color:#888;white-space:nowrap}
 .tabs button.on{color:#2f8f5b;font-weight:700}
 .mon{font-size:13px;color:#666;margin:14px 2px 6px;font-weight:600}
 .item{display:flex;gap:12px;background:#fff;border-radius:14px;padding:10px;margin-bottom:8px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
@@ -48,13 +56,36 @@ textarea{min-height:70px;resize:vertical}
 .item .d{font-weight:700;font-size:15px}
 .item .s{color:#e0a526;letter-spacing:1px}
 .item .c{color:#777;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.badge{display:inline-block;font-size:11px;font-weight:700;border-radius:8px;padding:1px 7px;margin-left:6px;vertical-align:1px}
+.badge.ok{background:#eaf6ef;color:#2f8f5b}
+.badge.wait{background:#fff1dc;color:#b86e00}
+.badge.none{background:#eee;color:#888}
 .empty{text-align:center;color:#999;padding:40px 0;font-size:14px}
 .edithead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:14px;color:#666}
 .back{border:0;background:none;color:#2f8f5b;font-size:16px;font-weight:600;padding:6px 8px 6px 0;white-space:nowrap}
 .edithead .sp{width:52px}
-.sync-btn{border:1px solid #d8d8d2;background:#fff;color:#777;border-radius:18px;height:36px;padding:0 12px;font-size:13px;font-weight:700;white-space:nowrap;min-width:76px}
-.sync-btn.on{background:#2f8f5b;border-color:#2f8f5b;color:#fff}
-.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 80px);transform:translateX(-50%);background:rgba(40,40,40,.88);color:#fff;padding:10px 16px;border-radius:20px;font-size:14px;width:max-content;max-width:min(90vw,420px);z-index:9;opacity:0;pointer-events:none;transition:opacity .2s}
+.chips{display:flex;gap:6px;overflow-x:auto;margin:2px 0 10px;padding-bottom:2px}
+.chips button{border:1px solid #d8d8d2;background:#fff;border-radius:16px;padding:6px 12px;font-size:13px;color:#555;white-space:nowrap;flex-shrink:0}
+.chips button.on{background:#2f8f5b;border-color:#2f8f5b;color:#fff}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.tile{background:#fff;border-radius:12px;padding:6px;box-shadow:0 1px 3px rgba(0,0,0,.05);position:relative;border:2px solid transparent}
+.tile.sel{border-color:#2f8f5b}
+.tile .ph{aspect-ratio:1/1;border-radius:8px;background:#f1f1ed;overflow:hidden}
+.tile .ph img{width:100%;height:100%;object-fit:contain;display:block;background:#fff}
+.tile .nm{font-size:12px;margin-top:4px;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tile .ct{font-size:11px;color:#888}
+.cand{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0ec}
+.cand:last-child{border-bottom:0}
+.cand .th{width:48px;height:48px;border-radius:8px;background:#f1f1ed;overflow:hidden;flex-shrink:0}
+.cand .th img{width:100%;height:100%;object-fit:contain;background:#fff;display:block}
+.cand .nm{flex:1;min-width:0;font-size:14px;line-height:1.35;overflow:hidden;text-overflow:ellipsis}
+.cand .nm small{display:block;color:#999;font-size:11px}
+.cand .sc{font-size:13px;color:#666;min-width:38px;text-align:right}
+.cand .chk{width:30px;height:30px;border-radius:15px;border:2px solid #d0d0c8;color:transparent;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.cand .chk.on{background:#2f8f5b;border-color:#2f8f5b;color:#fff}
+.overlay{position:fixed;inset:0;background:#f4f4f1;z-index:20;overflow:auto;padding:calc(env(safe-area-inset-top,0px) + 32px) 14px calc(env(safe-area-inset-bottom,0px) + 20px)}
+.overlay .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 80px);transform:translateX(-50%);background:rgba(40,40,40,.88);color:#fff;padding:10px 16px;border-radius:20px;font-size:14px;width:max-content;max-width:min(90vw,420px);z-index:30;opacity:0;pointer-events:none;transition:opacity .2s}
 .toast.show{opacity:1}
 .hide{display:none!important}
 </style>
@@ -74,6 +105,16 @@ textarea{min-height:70px;resize:vertical}
       <div class="photo" id="photoBox"><span id="photoHint">タップして写真を撮る / 選ぶ</span><img id="photoImg" class="hide" alt=""><input type="file" id="photoInput" accept="image/*"></div>
       <label class="f" for="dt">日時</label>
       <input type="datetime-local" id="dt">
+    </div>
+    <div class="card hide" id="wearCard">
+      <h2>着ていた服 <span id="wearState" class="badge none"></span></h2>
+      <div id="wearList"></div>
+      <div class="hint" id="wearHint"></div>
+      <div class="btns" style="margin-top:10px">
+        <button class="btn" id="aiBtn">AI判定</button>
+        <button class="btn" id="addItemBtn">服を追加</button>
+      </div>
+      <button class="btn" id="confirmBtn" style="width:100%;margin-top:10px;padding:13px">着た服を確定する</button>
     </div>
     <div class="card">
       <h2>天気と気温</h2>
@@ -104,7 +145,57 @@ textarea{min-height:70px;resize:vertical}
 
   <!-- 履歴 -->
   <section id="tab-hist" class="hide">
+    <div class="chips" id="hChips">
+      <button data-f="all" class="on">すべて</button>
+      <button data-f="pending">確認待ち <span id="pn"></span></button>
+    </div>
+    <div class="hint" id="hHint" style="margin:-4px 2px 10px"></div>
     <div id="histList"></div>
+  </section>
+
+  <!-- ワードローブ -->
+  <section id="tab-ward" class="hide">
+    <div id="wListView">
+      <div class="row" style="justify-content:space-between;margin-bottom:8px">
+        <div id="wCount" style="font-size:14px;color:#666"></div>
+        <button class="btn green sm" id="wAdd">＋ 服を登録</button>
+      </div>
+      <div class="chips" id="wChips"></div>
+      <div class="grid" id="wGrid"></div>
+    </div>
+    <div id="wFormView" class="hide">
+      <div class="edithead"><button class="back" id="wBack">&#8249; 戻る</button><span id="wFormLabel">服を登録</span><span class="sp"></span></div>
+      <div class="card">
+        <div class="photo sq" id="wPhotoBox"><span id="wPhotoHint">タップして服の写真を撮る / 選ぶ<br><small>ハンガーにかけて、正面から撮ると見分けやすいです</small></span><img id="wPhotoImg" class="hide" alt=""><input type="file" id="wPhotoInput" accept="image/*"></div>
+        <div class="row" style="margin-top:8px;flex-wrap:wrap" id="bgRow">
+          <button class="btn sm hide" id="bgRun">背景をきれいにする</button>
+          <button class="btn sm hide" id="bgCancel">やめる</button>
+          <button class="btn sm green hide" id="bgApply">これにする</button>
+          <button class="btn sm hide" id="bgUndo">元の写真に戻す</button>
+        </div>
+        <div class="hint" id="bgMsg"></div>
+        <label class="f" for="wName">名前</label>
+        <input type="text" id="wName" placeholder="例: ネイビーのカーディガン">
+        <div class="two">
+          <div><label class="f" for="wCat">カテゴリ</label><select id="wCat"></select></div>
+          <div><label class="f" for="wColor">色</label><input type="text" id="wColor" placeholder="例: 紺"></div>
+        </div>
+        <label class="f" for="wBrand">ブランド(任意)</label>
+        <input type="text" id="wBrand">
+        <div class="two">
+          <div><label class="f" for="wPrice">購入価格(円)</label><input type="number" inputmode="numeric" id="wPrice" placeholder="例: 5900"></div>
+          <div><label class="f" for="wBought">購入日</label><input type="date" id="wBought"></div>
+        </div>
+        <label class="f" for="wSold">売却額(円・手放したときだけ)</label>
+        <input type="number" inputmode="numeric" id="wSold">
+        <div class="hint" id="wStats"></div>
+      </div>
+      <div class="btns">
+        <button class="btn hide" id="wDel">削除</button>
+        <button class="btn hide" id="wSaveNext">保存して次へ</button>
+        <button class="btn green" id="wSave">保存</button>
+      </div>
+    </div>
   </section>
 
   <!-- 設定 -->
@@ -115,6 +206,19 @@ textarea{min-height:70px;resize:vertical}
       <input type="search" id="baseQ" placeholder="地名で探す(例: 御殿場)">
       <div class="res" id="baseRes"></div>
       <div class="hint">撮影のたびにこの地点が選ばれます。旅行など、その日だけ変えたいときは撮影画面から変えられます。</div>
+    </div>
+    <div class="card">
+      <h2>AI判定(Gemini)</h2>
+      <div id="keyState" style="font-size:15px;margin-bottom:8px"></div>
+      <label class="f" for="gkey">APIキー</label>
+      <input type="password" id="gkey" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="ここに貼り付け">
+      <label class="f" for="gmodel">モデル名</label>
+      <input type="text" id="gmodel" autocapitalize="off" spellcheck="false">
+      <div class="btns">
+        <button class="btn" id="gClear">キーを消す</button>
+        <button class="btn green" id="gSave">保存</button>
+      </div>
+      <div class="hint">キーはこのiPhoneの中だけに保存します。同期にも、バックアップのファイルにも、GitHubにも入りません。機種変更のときは貼り直してください。</div>
     </div>
     <div class="card">
       <h2>バックアップ</h2>
@@ -129,9 +233,17 @@ textarea{min-height:70px;resize:vertical}
   </section>
 </div>
 
+<!-- 服の選択 -->
+<div class="overlay hide" id="picker">
+  <div class="head"><b>着た服を選ぶ</b><button class="btn green sm" id="pickDone">完了</button></div>
+  <div class="chips" id="pickChips"></div>
+  <div class="grid" id="pickGrid"></div>
+</div>
+
 <nav class="tabs">
   <button data-t="shot" class="on">撮影</button>
   <button data-t="hist">履歴</button>
+  <button data-t="ward">ワードローブ</button>
   <button data-t="set">設定</button>
 </nav>
 <div class="toast" id="toast"></div>
@@ -144,14 +256,17 @@ textarea{min-height:70px;resize:vertical}
 (function(){
 "use strict";
 var LS='outfit-log-v1';
+var KEYLS='outfit-log-gkey',MODELLS='outfit-log-gmodel',DEFMODEL='gemini-flash-latest';
 var WD=['日','月','火','水','木','金','土'];
 var WXN={0:'快晴',1:'晴れ',2:'薄曇り',3:'曇り',45:'霧',48:'霧',51:'霧雨',53:'霧雨',55:'霧雨',56:'霧雨',57:'霧雨',61:'雨',63:'雨',65:'強い雨',66:'雨',67:'雨',71:'雪',73:'雪',75:'大雪',77:'雪',80:'にわか雨',81:'にわか雨',82:'強いにわか雨',85:'にわか雪',86:'にわか雪',95:'雷雨',96:'雷雨',99:'雷雨'};
+var CATS=['トップス','ボトムス','アウター','ワンピース','靴','バッグ','小物','その他'];
+var SEL_SCORE=70; // この確信度以上は、最初からチェックしておく
 var $=function(id){return document.getElementById(id)};
 
 /* ---------- 保存 ---------- */
-var db={settings:{base:null},settingsAt:0,records:[],tombs:{}};
+var db={settings:{base:null},settingsAt:0,records:[],tombs:{},wardrobe:[],wtombs:{}};
 function load(){
-  try{var s=JSON.parse(localStorage.getItem(LS)||'null');if(s){db.settings=s.settings||{base:null};db.settingsAt=s.settingsAt||0;db.records=Array.isArray(s.records)?s.records:[];db.tombs=s.tombs||{};}}catch(e){}
+  try{var s=JSON.parse(localStorage.getItem(LS)||'null');if(s){db.settings=s.settings||{base:null};db.settingsAt=s.settingsAt||0;db.records=Array.isArray(s.records)?s.records:[];db.tombs=s.tombs||{};db.wardrobe=Array.isArray(s.wardrobe)?s.wardrobe:[];db.wtombs=s.wtombs||{};}}catch(e){}
   if(!db.settings||typeof db.settings!=='object')db.settings={base:null};
 }
 function save(){localStorage.setItem(LS,JSON.stringify(db))}
@@ -160,15 +275,19 @@ var idbP=null;
 function idb(){
   if(idbP)return idbP;
   idbP=new Promise(function(res,rej){
-    var r=indexedDB.open('outfit-log',1);
-    r.onupgradeneeded=function(){r.result.createObjectStore('photos')};
+    var r=indexedDB.open('outfit-log',2);
+    r.onupgradeneeded=function(){
+      var d=r.result;
+      if(!d.objectStoreNames.contains('photos'))d.createObjectStore('photos');
+      if(!d.objectStoreNames.contains('wphotos'))d.createObjectStore('wphotos');
+    };
     r.onsuccess=function(){res(r.result)};r.onerror=function(){rej(r.error)};
   });
   return idbP;
 }
-function photoPut(id,blob){return idb().then(function(d){return new Promise(function(res,rej){var t=d.transaction('photos','readwrite');t.objectStore('photos').put(blob,id);t.oncomplete=res;t.onerror=function(){rej(t.error)}})})}
-function photoGet(id){return idb().then(function(d){return new Promise(function(res,rej){var q=d.transaction('photos').objectStore('photos').get(id);q.onsuccess=function(){res(q.result||null)};q.onerror=function(){rej(q.error)}})})}
-function photoDel(id){return idb().then(function(d){return new Promise(function(res){var t=d.transaction('photos','readwrite');t.objectStore('photos').delete(id);t.oncomplete=res;t.onerror=res})})}
+function photoPut(id,blob,st){st=st||'photos';return idb().then(function(d){return new Promise(function(res,rej){var t=d.transaction(st,'readwrite');t.objectStore(st).put(blob,id);t.oncomplete=res;t.onerror=function(){rej(t.error)}})})}
+function photoGet(id,st){st=st||'photos';return idb().then(function(d){return new Promise(function(res,rej){var q=d.transaction(st).objectStore(st).get(id);q.onsuccess=function(){res(q.result||null)};q.onerror=function(){rej(q.error)}})})}
+function photoDel(id,st){st=st||'photos';return idb().then(function(d){return new Promise(function(res){var t=d.transaction(st,'readwrite');t.objectStore(st).delete(id);t.oncomplete=res;t.onerror=res})})}
 
 /* ---------- 小道具 ---------- */
 function pad(n){return n<10?'0'+n:''+n}
@@ -177,11 +296,13 @@ function parseDt(v){var m=/^(\d{4})-(\d\d)-(\d\d)T(\d\d):(\d\d)/.exec(v||'');ret
 function dateKey(v){return String(v||'').slice(0,10)}
 function wdOf(key){var p=key.split('-');return WD[new Date(+p[0],+p[1]-1,+p[2]).getDay()]}
 function jpDate(key){var p=key.split('-');return (+p[0])+'年'+(+p[1])+'月'+(+p[2])+'日('+wdOf(key)+')'}
-function uid(){return 'o'+Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
+function uid(pre){return (pre||'o')+Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 var toastT=null;
-function toast(m){var t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(function(){t.classList.remove('show')},2200)}
+function toast(m){var t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(function(){t.classList.remove('show')},2600)}
 function stars(n){var s='';for(var i=1;i<=5;i++)s+=i<=n?'★':'☆';return s}
+function yen(n){return '¥'+Math.round(n).toLocaleString('ja-JP')}
+function numOrNull(v){if(v===''||v==null)return null;var n=Number(v);return isFinite(n)?n:null}
 
 /* ---------- 写真の縮小 ---------- */
 function shrink(file,MAX,Q){
@@ -201,6 +322,7 @@ function shrink(file,MAX,Q){
     im.onerror=rej;im.src=u;
   });
 }
+function blobToDataUrl(b){return new Promise(function(res){var r=new FileReader();r.onload=function(){res(r.result)};r.readAsDataURL(b)})}
 
 /* ---------- 天気(Open-Meteo) ---------- */
 function fetchWeather(loc,dtv){
@@ -261,10 +383,25 @@ function locSearch(inp,resEl,onPick){
   });
 }
 
+/* ---------- 画像のキャッシュ(表示用URL) ---------- */
+var urlCache={},wurl={};
+function loadImg(im,id,st){
+  var cache=st==='wphotos'?wurl:urlCache;
+  if(cache[id]){im.src=cache[id];return}
+  photoGet(id,st).then(function(b){if(b){cache[id]=URL.createObjectURL(b);im.src=cache[id]}});
+}
+function wById(id){return db.wardrobe.find(function(w){return w.id===id})||null}
+function wIdx(id){return db.wardrobe.findIndex(function(w){return w.id===id})}
+function wearCounts(){
+  var m={};
+  db.records.forEach(function(r){if(r.confirmed&&r.items)r.items.forEach(function(id){m[id]=(m[id]||0)+1})});
+  return m;
+}
+
 /* ---------- 撮影フォーム ---------- */
 var cur=null; // 今のフォームの状態
 function newCur(){
-  return {id:null,photoAt:0,photoBlob:null,photoUrl:null,dt:dtValue(new Date()),fav:0,comment:'',loc:db.settings.base?{name:db.settings.base.name,lat:db.settings.base.lat,lon:db.settings.base.lon}:null,locIsBase:true,weather:null,wxBusy:false};
+  return {id:null,photoAt:0,photoBlob:null,photoUrl:null,dt:dtValue(new Date()),fav:0,comment:'',loc:db.settings.base?{name:db.settings.base.name,lat:db.settings.base.lat,lon:db.settings.base.lon}:null,locIsBase:true,weather:null,wxBusy:false,cands:[],sel:[],confirmed:false,ai:null};
 }
 function setPhotoUrl(u){
   if(cur.photoUrl&&cur.photoUrl.indexOf('blob:')===0)URL.revokeObjectURL(cur.photoUrl);
@@ -284,6 +421,7 @@ function renderForm(){
   $('delBtn').classList.toggle('hide',!edit);
   $('locPanel').classList.add('hide');
   $('locToggle').textContent=edit?'地点を変える':'今日だけ変える';
+  renderWear();
 }
 function renderStars(){
   var h='';for(var i=1;i<=5;i++)h+='<button type="button" data-n="'+i+'" class="'+(i<=cur.fav?'on':'')+'" aria-label="'+i+'">★</button>';
@@ -344,16 +482,22 @@ $('saveBtn').addEventListener('click',function(){
   }
   var wasEdit=!!cur.id;
   var id=cur.id||uid();
-  var rec={id:id,dt:cur.dt,date:dateKey(cur.dt),fav:cur.fav,comment:cur.comment,weather:cur.weather,hasPhoto:!!(cur.photoBlob||cur.photoUrl),photoAt:cur.photoBlob?Date.now():(cur.photoAt||0),updatedAt:Date.now()};
+  var newPhoto=!!cur.photoBlob;
+  var items=cur.sel.filter(function(x){return !!wById(x)});
+  var rec={id:id,dt:cur.dt,date:dateKey(cur.dt),fav:cur.fav,comment:cur.comment,weather:cur.weather,hasPhoto:!!(cur.photoBlob||cur.photoUrl),photoAt:cur.photoBlob?Date.now():(cur.photoAt||0),items:items,confirmed:!!cur.confirmed,ai:cur.ai||null,updatedAt:Date.now()};
   var old=db.records.find(function(r){return r.id===id});
   if(old&&!cur.photoBlob)rec.syncedPhotoAt=old.syncedPhotoAt||0;
   delete db.tombs[id];
   var i=db.records.findIndex(function(r){return r.id===id});
   if(i>=0)db.records[i]=rec;else db.records.push(rec);
   var p=cur.photoBlob?photoPut(id,cur.photoBlob):Promise.resolve();
-  p.then(function(){save();toast('保存しました');if(wasEdit)backToHist();else resetForm();pushRecord(rec).catch(syncErr)}).catch(function(){
-    // 写真が保存できなかったときは、記録だけ残して知らせる
-    rec.hasPhoto=false;save();toast('写真を保存できませんでした(記録のみ保存)');if(wasEdit)backToHist();else resetForm();pushRecord(rec).catch(syncErr);
+  function after(){
+    if(wasEdit)backToHist();else resetForm();
+    pushRecord(rec).catch(syncErr);
+    if(rec.hasPhoto&&!rec.confirmed&&(newPhoto||!rec.ai)&&canAI())runAI(id);
+  }
+  p.then(function(){save();toast('保存しました');after()}).catch(function(){
+    rec.hasPhoto=false;save();toast('写真を保存できませんでした(記録のみ保存)');after();
   });
 });
 $('delBtn').addEventListener('click',function(){
@@ -365,60 +509,418 @@ $('delBtn').addEventListener('click',function(){
   save();delete urlCache[id];photoDel(id).then(function(){toast('削除しました');backToHist();pushTomb(id).catch(syncErr)});
 });
 
+/* ---------- AI判定 ---------- */
+function getKey(){return localStorage.getItem(KEYLS)||''}
+function getModel(){return localStorage.getItem(MODELLS)||DEFMODEL}
+function canAI(){return !!getKey()&&db.wardrobe.some(function(w){return w.hasPhoto})}
+var aiBusy={};
+// AIの返事(JSON文字列)を、確信度の高い順の候補に直す。map は 番号→服のID
+function parseAI(text,map){
+  var t=String(text||'').replace(/^```(?:json)?/i,'').replace(/```$/,'').trim();
+  var j=JSON.parse(t);
+  var arr=Array.isArray(j)?j:(j.items||[]);
+  var seen={},out=[];
+  arr.forEach(function(x){
+    var id=map[x.no];var sc=Math.round(Number(x.score));
+    if(!id||!isFinite(sc)||seen[id])return;
+    sc=Math.max(0,Math.min(100,sc));
+    if(sc<10)return;
+    seen[id]=1;out.push({id:id,score:sc});
+  });
+  out.sort(function(a,b){return b.score-a.score});
+  return out.slice(0,20);
+}
+function askGemini(outfitBlob,items){
+  // items: [{no,name,cat,color,blob}]
+  var parts=[{text:'あなたは、全身写真に写っている人が着ている服を、ワードローブから見つける係です。\nまず、ワードローブの服が番号つきで並びます。最後に、今日の全身写真が1枚あります。'}];
+  return Promise.all(items.map(function(it){return blobToDataUrl(it.blob)})).then(function(urls){
+    items.forEach(function(it,k){
+      parts.push({text:'No.'+it.no+' '+it.name+'('+it.cat+(it.color?'・'+it.color:'')+')'});
+      parts.push({inlineData:{mimeType:'image/jpeg',data:urls[k].split(',')[1]}});
+    });
+    return blobToDataUrl(outfitBlob);
+  }).then(function(u){
+    parts.push({text:'ここから下が、今日の全身写真です。'});
+    parts.push({inlineData:{mimeType:'image/jpeg',data:u.split(',')[1]}});
+    parts.push({text:'全身写真の人が着ている服・靴・バッグを、ワードローブの番号から選んでください。\n・重ね着で隠れて見えない服は含めないでください。\n・似た服で迷うときは、可能性のあるものを、低めの確信度で含めてください。\n・JSONだけを返してください。形式: {"items":[{"no":番号,"score":確信度(0〜100の整数)}]}\n・確信度は「その服で合っている自信」です。1%以上の可能性があるものだけ入れてください。'});
+    return fetch('https://generativelanguage.googleapis.com/v1beta/models/'+encodeURIComponent(getModel())+':generateContent',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-goog-api-key':getKey()},
+      body:JSON.stringify({contents:[{role:'user',parts:parts}],generationConfig:{responseMimeType:'application/json',temperature:0.2}})
+    });
+  }).then(function(r){
+    if(!r.ok)throw new Error('http '+r.status);
+    return r.json();
+  }).then(function(j){
+    var c=j.candidates&&j.candidates[0],ps=c&&c.content&&c.content.parts||[];
+    var txt=ps.map(function(p){return p.text||''}).join('');
+    if(!txt)throw new Error('empty');
+    return txt;
+  });
+}
+function runAI(id){
+  var r=db.records.find(function(x){return x.id===id});
+  if(!r||!r.hasPhoto){return Promise.resolve()}
+  if(!getKey()){toast('設定でGeminiのキーを入れてください');return Promise.resolve()}
+  var ws=db.wardrobe.filter(function(w){return w.hasPhoto});
+  if(!ws.length){toast('ワードローブに写真つきの服を登録してください');return Promise.resolve()}
+  if(aiBusy[id])return Promise.resolve();
+  aiBusy[id]=true;toast('AI判定中…(数十秒かかります)');
+  var map={};
+  return Promise.all([photoGet(id)].concat(ws.map(function(w){return photoGet(w.id,'wphotos')}))).then(function(bl){
+    var outfit=bl[0];if(!outfit)throw new Error('nophoto');
+    var items=[];
+    ws.forEach(function(w,k){if(bl[k+1]){var no=items.length+1;map[no]=w.id;items.push({no:no,name:w.name,cat:w.cat,color:w.color||'',blob:bl[k+1]})}});
+    return askGemini(outfit,items);
+  }).then(function(txt){
+    var cands=parseAI(txt,map);
+    var rec=db.records.find(function(x){return x.id===id});
+    if(!rec)return;
+    rec.ai={at:Date.now(),model:getModel(),cands:cands};
+    if(!rec.confirmed)rec.items=cands.filter(function(c){return c.score>=SEL_SCORE}).map(function(c){return c.id});
+    rec.updatedAt=Date.now();save();
+    if(cur&&cur.id===id){cur.ai=rec.ai;cur.cands=cands;if(!cur.confirmed)cur.sel=rec.items.slice();renderWear()}
+    refreshUI();pushRecord(rec).catch(syncErr);
+    toast(cands.length?'AI判定が終わりました。履歴の「確認待ち」から確認できます':'AIが服を見つけられませんでした');
+  }).catch(function(e){
+    console.warn(e);
+    var m=String(e&&e.message||'');
+    toast(m.indexOf('http 400')===0||m.indexOf('http 403')===0?'AI判定に失敗(キーかモデル名を確認)':m.indexOf('http 429')===0?'AI判定の回数制限です。少し待ってやり直してください':'AI判定に失敗しました(通信を確認)');
+  }).then(function(){delete aiBusy[id]});
+}
+
+/* ---------- 着ていた服(編集画面の確認カード) ---------- */
+function renderWear(){
+  var card=$('wearCard');
+  if(!cur||!cur.id){card.classList.add('hide');return}
+  card.classList.remove('hide');
+  var st=$('wearState');
+  if(cur.confirmed){st.textContent='確定済み';st.className='badge ok'}
+  else if(cur.ai){st.textContent='AI推定(確認待ち)';st.className='badge wait'}
+  else{st.textContent='未判定';st.className='badge none'}
+  var score={};cur.cands.forEach(function(c){score[c.id]=c.score});
+  var ids=cur.cands.map(function(c){return c.id});
+  cur.sel.forEach(function(x){if(ids.indexOf(x)<0)ids.push(x)});
+  ids=ids.filter(function(x){return !!wById(x)});
+  var h='';
+  ids.forEach(function(x){
+    var w=wById(x),on=cur.sel.indexOf(x)>=0;
+    h+='<div class="cand" data-id="'+esc(x)+'"><div class="th">'+(w.hasPhoto?'<img data-wid="'+esc(x)+'" alt="">':'')+'</div><div class="nm">'+esc(w.name)+'<small>'+esc(w.cat)+(w.color?' / '+esc(w.color):'')+'</small></div><div class="sc">'+(score[x]!=null?score[x]+'%':'手動')+'</div><div class="chk'+(on?' on':'')+'">✓</div></div>';
+  });
+  $('wearList').innerHTML=h||'<div class="hint">まだ候補がありません。「AI判定」を押すか、「服を追加」で選んでください。</div>';
+  $('wearList').querySelectorAll('img[data-wid]').forEach(function(im){loadImg(im,im.getAttribute('data-wid'),'wphotos')});
+  var hint='';
+  if(!getKey())hint='AI判定を使うには、設定タブでGeminiのキーを入れてください。';
+  else if(!db.wardrobe.some(function(w){return w.hasPhoto}))hint='ワードローブに、写真つきの服を登録してください。';
+  else if(cur.cands.length)hint='確信が高い順です。'+SEL_SCORE+'%以上は最初からチェックしてあります。違う所を直してから「確定」してください。確定した記録だけ、着用回数に数えます。';
+  $('wearHint').textContent=hint;
+  $('aiBtn').textContent=cur.ai?'AI判定をやり直す':'AI判定';
+  var cf=$('confirmBtn');
+  cf.textContent=cur.confirmed?'✓ 確定済み(タップで取り消し)':'着た服を確定する';
+  cf.classList.toggle('on',!!cur.confirmed);
+}
+$('wearList').addEventListener('click',function(e){
+  var row=e.target.closest('.cand');if(!row)return;
+  var id=row.getAttribute('data-id'),i=cur.sel.indexOf(id);
+  if(i>=0)cur.sel.splice(i,1);else cur.sel.push(id);
+  renderWear();
+});
+$('confirmBtn').addEventListener('click',function(){
+  cur.confirmed=!cur.confirmed;renderWear();
+  if(cur.confirmed)toast('保存すると確定します');
+});
+$('aiBtn').addEventListener('click',function(){
+  if(!cur.id)return;
+  if(!getKey()){toast('設定でGeminiのキーを入れてください');return}
+  // 画面で変えた内容(写真など)が未保存だと、古い写真で判定してしまうので先に保存を促す
+  if(cur.photoBlob){toast('写真を変えたので、先に保存してください');return}
+  runAI(cur.id);
+});
+
+/* 服の選択(追加) */
+var pickCat='all';
+function openPicker(){pickCat='all';renderPicker();$('picker').classList.remove('hide')}
+function renderPicker(){
+  renderChips($('pickChips'),pickCat);
+  var list=db.wardrobe.filter(function(w){return pickCat==='all'||w.cat===pickCat});
+  var h='';
+  list.forEach(function(w){
+    h+='<div class="tile'+(cur.sel.indexOf(w.id)>=0?' sel':'')+'" data-id="'+esc(w.id)+'"><div class="ph">'+(w.hasPhoto?'<img data-wid="'+esc(w.id)+'" alt="">':'')+'</div><div class="nm">'+esc(w.name)+'</div></div>';
+  });
+  $('pickGrid').innerHTML=h||'<div class="empty" style="grid-column:1/-1">服がありません</div>';
+  $('pickGrid').querySelectorAll('img[data-wid]').forEach(function(im){loadImg(im,im.getAttribute('data-wid'),'wphotos')});
+}
+$('addItemBtn').addEventListener('click',function(){
+  if(!db.wardrobe.length){toast('先にワードローブへ服を登録してください');return}
+  openPicker();
+});
+$('pickGrid').addEventListener('click',function(e){
+  var t=e.target.closest('.tile');if(!t)return;
+  var id=t.getAttribute('data-id'),i=cur.sel.indexOf(id);
+  if(i>=0)cur.sel.splice(i,1);else cur.sel.push(id);
+  t.classList.toggle('sel');
+});
+$('pickChips').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;pickCat=b.getAttribute('data-c');renderPicker()});
+$('pickDone').addEventListener('click',function(){$('picker').classList.add('hide');renderWear()});
+
 /* ---------- 履歴 ---------- */
-var urlCache={};
+var hfilter='all';
+function isPending(r){return !!(r.hasPhoto&&r.ai&&!r.confirmed)}
+function uncertainty(r){
+  // 選ばれている服のうち、一番自信が低いもの。低いほど先に見てほしい
+  var sc={};((r.ai&&r.ai.cands)||[]).forEach(function(c){sc[c.id]=c.score});
+  var sel=(r.items||[]);if(!sel.length)return 0;
+  var m=100;sel.forEach(function(id){m=Math.min(m,sc[id]!=null?sc[id]:0)});return m;
+}
+function badge(r){
+  if(r.confirmed)return '<span class="badge ok">確定</span>';
+  if(r.ai)return '<span class="badge wait">確認待ち</span>';
+  if(r.hasPhoto&&db.wardrobe.length)return '<span class="badge none">未判定</span>';
+  return '';
+}
 function renderHist(){
   var box=$('histList');
-  var list=db.records.slice().sort(function(a,b){return a.dt<b.dt?1:a.dt>b.dt?-1:0});
-  if(!list.length){box.innerHTML='<div class="empty">まだ記録がありません</div>';return}
+  var pend=db.records.filter(isPending);
+  $('pn').textContent=pend.length?'('+pend.length+')':'';
+  document.querySelectorAll('#hChips button').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-f')===hfilter)});
+  $('hHint').textContent=hfilter==='pending'?'AIの自信が低い記録から先に並んでいます。':'';
+  var list=(hfilter==='pending'?pend:db.records).slice();
+  if(hfilter==='pending')list.sort(function(a,b){var d=uncertainty(a)-uncertainty(b);return d||(a.dt<b.dt?1:-1)});
+  else list.sort(function(a,b){return a.dt<b.dt?1:a.dt>b.dt?-1:0});
+  if(!list.length){box.innerHTML='<div class="empty">'+(hfilter==='pending'?'確認待ちの記録はありません':'まだ記録がありません')+'</div>';return}
   var html='',lastM='';
   list.forEach(function(r){
-    var m=r.date.slice(0,7);
-    if(m!==lastM){html+='<div class="mon">'+(+m.slice(0,4))+'年'+(+m.slice(5,7))+'月</div>';lastM=m}
+    if(hfilter!=='pending'){
+      var m=r.date.slice(0,7);
+      if(m!==lastM){html+='<div class="mon">'+(+m.slice(0,4))+'年'+(+m.slice(5,7))+'月</div>';lastM=m}
+    }
     var wx=shortWx(r.weather);
-    html+='<div class="item" data-id="'+esc(r.id)+'"><div class="th">'+(r.hasPhoto?'<img data-pid="'+esc(r.id)+'" alt="">':'')+'</div><div class="tx"><div class="d">'+jpDate(r.date)+'</div>'
+    var names=(r.items||[]).map(function(x){var w=wById(x);return w?w.name:null}).filter(Boolean);
+    html+='<div class="item" data-id="'+esc(r.id)+'"><div class="th">'+(r.hasPhoto?'<img data-pid="'+esc(r.id)+'" alt="">':'')+'</div><div class="tx"><div class="d">'+jpDate(r.date)+badge(r)+'</div>'
       +(wx?'<div>'+esc(wx)+'</div>':'')
       +(r.fav?'<div class="s">'+stars(r.fav)+'</div>':'')
+      +(names.length?'<div class="c">'+esc(names.join('、'))+'</div>':'')
       +(r.comment?'<div class="c">'+esc(r.comment)+'</div>':'')+'</div></div>';
   });
   box.innerHTML=html;
-  box.querySelectorAll('img[data-pid]').forEach(function(im){
-    var id=im.getAttribute('data-pid');
-    if(urlCache[id]){im.src=urlCache[id];return}
-    photoGet(id).then(function(b){if(b){urlCache[id]=URL.createObjectURL(b);im.src=urlCache[id]}});
-  });
+  box.querySelectorAll('img[data-pid]').forEach(function(im){loadImg(im,im.getAttribute('data-pid'),'photos')});
 }
+$('hChips').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;hfilter=b.getAttribute('data-f');renderHist()});
 $('histList').addEventListener('click',function(e){
   var it=e.target.closest('.item');if(!it)return;
   var id=it.getAttribute('data-id');
   var r=db.records.find(function(x){return x.id===id});if(!r)return;
-  cur={id:r.id,photoAt:r.photoAt||0,photoBlob:null,photoUrl:null,dt:r.dt,fav:r.fav||0,comment:r.comment||'',loc:r.weather&&r.weather.loc?r.weather.loc:(db.settings.base||null),locIsBase:false,weather:r.weather||null,wxBusy:false};
+  cur={id:r.id,photoAt:r.photoAt||0,photoBlob:null,photoUrl:null,dt:r.dt,fav:r.fav||0,comment:r.comment||'',loc:r.weather&&r.weather.loc?r.weather.loc:(db.settings.base||null),locIsBase:false,weather:r.weather||null,wxBusy:false,cands:(r.ai&&r.ai.cands)?r.ai.cands.slice():[],sel:(r.items||[]).slice(),confirmed:!!r.confirmed,ai:r.ai||null};
   setPhotoUrl(null);
   if(r.hasPhoto)photoGet(r.id).then(function(b){if(b&&cur.id===r.id&&!cur.photoBlob)setPhotoUrl(URL.createObjectURL(b))});
   renderForm();showTab('shot');window.scrollTo(0,0);
+});
+
+/* ---------- ワードローブ ---------- */
+var wfilter='all',wcur=null;
+function renderChips(el,active){
+  var h='<button data-c="all" class="'+(active==='all'?'on':'')+'">すべて</button>';
+  CATS.forEach(function(c){h+='<button data-c="'+esc(c)+'" class="'+(active===c?'on':'')+'">'+esc(c)+'</button>'});
+  el.innerHTML=h;
+}
+function renderWard(){
+  renderChips($('wChips'),wfilter);
+  var cnt=wearCounts();
+  var list=db.wardrobe.filter(function(w){return wfilter==='all'||w.cat===wfilter}).sort(function(a,b){return (b.updatedAt||0)-(a.updatedAt||0)});
+  $('wCount').textContent=db.wardrobe.length+'着';
+  var h='';
+  list.forEach(function(w){
+    h+='<div class="tile" data-id="'+esc(w.id)+'"><div class="ph">'+(w.hasPhoto?'<img data-wid="'+esc(w.id)+'" alt="">':'')+'</div><div class="nm">'+esc(w.name)+'</div><div class="ct">'+(cnt[w.id]||0)+'回</div></div>';
+  });
+  $('wGrid').innerHTML=h||'<div class="empty" style="grid-column:1/-1">'+(db.wardrobe.length?'このカテゴリの服はありません':'まだ服がありません。「＋ 服を登録」から追加してください')+'</div>';
+  $('wGrid').querySelectorAll('img[data-wid]').forEach(function(im){loadImg(im,im.getAttribute('data-wid'),'wphotos')});
+}
+function showWList(){$('wFormView').classList.add('hide');$('wListView').classList.remove('hide');renderWard();window.scrollTo(0,0)}
+function setWPhoto(u){
+  if(wcur.photoUrl&&wcur.photoUrl.indexOf('blob:')===0)URL.revokeObjectURL(wcur.photoUrl);
+  wcur.photoUrl=u;
+  var im=$('wPhotoImg');
+  if(u){im.src=u;im.classList.remove('hide');$('wPhotoHint').classList.add('hide')}
+  else{im.removeAttribute('src');im.classList.add('hide');$('wPhotoHint').classList.remove('hide')}
+}
+
+/* ---------- 服の写真の背景をきれいにする(ブラウザ内で処理。外に送らない) ---------- */
+// ライブラリ: @imgly/background-removal(AGPL-3.0)。使うときだけCDNから読み込む。
+var BGLIB='https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.7.0/+esm';
+var bgMod=null;
+function loadBg(){
+  if(!bgMod)bgMod=import(BGLIB).catch(function(e){bgMod=null;throw e});
+  return bgMod;
+}
+// 透明背景のPNGを、服の範囲で切り出し、白地の正方形に置いてJPEGにする
+function whiteSquare(png,size){
+  size=size||384;
+  return createImageBitmap(png).then(function(bm){
+    var c=document.createElement('canvas');c.width=bm.width;c.height=bm.height;
+    var x=c.getContext('2d');x.drawImage(bm,0,0);
+    var d=x.getImageData(0,0,c.width,c.height).data,minX=c.width,minY=c.height,maxX=-1,maxY=-1;
+    for(var y=0;y<c.height;y++)for(var xx=0;xx<c.width;xx++){
+      if(d[(y*c.width+xx)*4+3]>24){if(xx<minX)minX=xx;if(xx>maxX)maxX=xx;if(y<minY)minY=y;if(y>maxY)maxY=y}
+    }
+    if(maxX<0)throw new Error('empty'); // 何も見つからなかった
+    var w=maxX-minX+1,h=maxY-minY+1,side=Math.max(w,h),pad=Math.round(side*0.06),box=side+pad*2;
+    var o=document.createElement('canvas');o.width=size;o.height=size;
+    var ox=o.getContext('2d');ox.fillStyle='#fff';ox.fillRect(0,0,size,size);
+    var k=size/box;
+    ox.drawImage(c,minX,minY,w,h,Math.round((size-w*k)/2),Math.round((size-h*k)/2),Math.round(w*k),Math.round(h*k));
+    return new Promise(function(res,rej){o.toBlob(function(b){b?res(b):rej(new Error('blob'))},'image/jpeg',0.88)});
+  });
+}
+function removeBg(blob,onProgress){
+  return loadBg().then(function(m){
+    var fn=m.removeBackground||(m.default&&m.default.removeBackground)||m.default;
+    if(typeof fn!=='function')throw new Error('nolib');
+    return fn(blob,{model:'isnet_quint8',output:{format:'image/png'},progress:function(key,cur,total){if(onProgress&&total)onProgress(key,cur/total)}});
+  }).then(function(png){return whiteSquare(png)});
+}
+function renderBg(){
+  if(!wcur)return;
+  var has=!!wcur.photoUrl,st=wcur.stage||'';
+  $('bgRun').classList.toggle('hide',!has||st==='busy'||st==='preview');
+  $('bgCancel').classList.toggle('hide',st!=='preview');
+  $('bgApply').classList.toggle('hide',st!=='preview');
+  $('bgUndo').classList.toggle('hide',st!=='applied');
+  $('bgMsg').textContent=st==='busy'?(wcur.bgMsg||'処理中…'):st==='preview'?'この仕上がりでよければ「これにする」。違えば「やめる」で元の写真に戻ります。':'';
+}
+$('bgRun').addEventListener('click',function(){
+  var me=wcur;if(!me||me.stage==='busy')return;
+  me.stage='busy';me.bgMsg='準備中…(初回は読み込みに時間がかかります。Wi-Fi推奨)';renderBg();
+  var src=me.photoBlob?Promise.resolve(me.photoBlob):(me.id?photoGet(me.id,'wphotos'):Promise.resolve(null));
+  src.then(function(b){
+    if(!b)throw new Error('nophoto');
+    me.srcBlob=b;
+    return removeBg(b,function(key,r){
+      if(wcur!==me)return;
+      me.bgMsg=(key&&key.indexOf('fetch')===0?'モデルを読み込み中 ':'処理中 ')+Math.round(r*100)+'%';renderBg();
+    });
+  }).then(function(out){
+    if(wcur!==me)return;
+    me.prevBlob=out;me.stage='preview';setWPhoto(URL.createObjectURL(out));renderBg();
+  }).catch(function(e){
+    console.warn(e);
+    if(wcur!==me)return;
+    me.stage='';renderBg();
+    toast(String(e&&e.message)==='empty'?'服が見つかりませんでした(元の写真のままです)':'背景を消せませんでした(元の写真のまま使えます)');
+  });
+});
+$('bgCancel').addEventListener('click',function(){
+  if(!wcur||wcur.stage!=='preview')return;
+  setWPhoto(URL.createObjectURL(wcur.srcBlob));wcur.prevBlob=null;wcur.stage='';renderBg();
+});
+$('bgApply').addEventListener('click',function(){
+  if(!wcur||wcur.stage!=='preview')return;
+  wcur.origBlob=wcur.srcBlob;wcur.photoBlob=wcur.prevBlob;wcur.stage='applied';renderBg();toast('保存すると反映されます');
+});
+$('bgUndo').addEventListener('click',function(){
+  if(!wcur||wcur.stage!=='applied'||!wcur.origBlob)return;
+  wcur.photoBlob=wcur.origBlob;wcur.origBlob=null;setWPhoto(URL.createObjectURL(wcur.photoBlob));wcur.stage='';renderBg();
+});
+
+function openWForm(w){
+  wcur=w?{id:w.id,photoBlob:null,photoUrl:null,hasPhoto:!!w.hasPhoto}:{id:null,photoBlob:null,photoUrl:null,hasPhoto:false};
+  setWPhoto(null);renderBg();
+  if(w&&w.hasPhoto)photoGet(w.id,'wphotos').then(function(b){if(b&&wcur&&wcur.id===w.id&&!wcur.photoBlob){setWPhoto(URL.createObjectURL(b));renderBg()}});
+  $('wName').value=w?w.name:'';
+  $('wCat').value=w?w.cat:CATS[0];
+  $('wColor').value=w?(w.color||''):'';
+  $('wBrand').value=w?(w.brand||''):'';
+  $('wPrice').value=w&&w.price!=null?w.price:'';
+  $('wBought').value=w?(w.bought||''):'';
+  $('wSold').value=w&&w.sold!=null?w.sold:'';
+  $('wFormLabel').textContent=w?'服を編集':'服を登録';
+  $('wDel').classList.toggle('hide',!w);
+  $('wSaveNext').classList.toggle('hide',!!w);
+  var st='';
+  if(w){
+    var n=wearCounts()[w.id]||0;
+    st='着用 '+n+'回(確定した記録から数えています)';
+    if(w.price!=null&&n>0)st+='\n1回あたり '+yen(w.price/n);
+    if(w.sold!=null&&w.price!=null){var d=w.sold-w.price;st+='\n売却して '+(d>=0?'+':'−')+yen(Math.abs(d))+'(売却額−購入価格)'}
+  }
+  $('wStats').style.whiteSpace='pre-line';
+  $('wStats').textContent=st;
+  $('wListView').classList.add('hide');$('wFormView').classList.remove('hide');window.scrollTo(0,0);
+}
+$('wCat').innerHTML=CATS.map(function(c){return '<option>'+esc(c)+'</option>'}).join('');
+$('wAdd').addEventListener('click',function(){openWForm(null)});
+$('wBack').addEventListener('click',showWList);
+$('wChips').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;wfilter=b.getAttribute('data-c');renderWard()});
+$('wGrid').addEventListener('click',function(e){
+  var t=e.target.closest('.tile');if(!t)return;
+  var w=wById(t.getAttribute('data-id'));if(w)openWForm(w);
+});
+$('wPhotoInput').addEventListener('change',function(e){
+  var f=e.target.files&&e.target.files[0];if(!f)return;
+  shrink(f,384,0.78).then(function(b){wcur.photoBlob=b;wcur.stage='';wcur.origBlob=null;setWPhoto(URL.createObjectURL(b));renderBg()}).catch(function(){toast('写真を読み込めませんでした')});
+  e.target.value='';
+});
+function saveWard(next){
+  var name=$('wName').value.trim();
+  if(!name){toast('名前を入れてください');return}
+  var id=wcur.id||uid('w');
+  var old=wById(id);
+  var w={id:id,name:name,cat:$('wCat').value,color:$('wColor').value.trim(),brand:$('wBrand').value.trim(),price:numOrNull($('wPrice').value),bought:$('wBought').value||'',sold:numOrNull($('wSold').value),hasPhoto:!!(wcur.photoBlob||(old&&old.hasPhoto)),updatedAt:Date.now()};
+  var i=wIdx(id);if(i>=0)db.wardrobe[i]=w;else db.wardrobe.push(w);
+  delete db.wtombs[id];
+  var p=wcur.photoBlob?photoPut(id,wcur.photoBlob,'wphotos'):Promise.resolve();
+  p.then(function(){
+    save();delete wurl[id];toast('保存しました');
+    pushWard(w).catch(syncErr);
+    if(next){openWForm(null)}else showWList();
+  }).catch(function(){w.hasPhoto=false;save();toast('写真を保存できませんでした(服の情報のみ保存)');showWList()});
+}
+$('wSave').addEventListener('click',function(){saveWard(false)});
+$('wSaveNext').addEventListener('click',function(){saveWard(true)});
+$('wDel').addEventListener('click',function(){
+  if(!wcur||!wcur.id)return;
+  var n=wearCounts()[wcur.id]||0;
+  if(!confirm('この服を削除しますか？'+(n?'\n(着用 '+n+'回の記録からも外れます)':'')))return;
+  var id=wcur.id;
+  db.wardrobe=db.wardrobe.filter(function(w){return w.id!==id});
+  db.wtombs[id]=Date.now();save();delete wurl[id];
+  photoDel(id,'wphotos').then(function(){toast('削除しました');showWList();pushWTomb(id).catch(syncErr)});
 });
 
 /* ---------- 設定 ---------- */
 function renderSet(){
   var b=db.settings.base;
   $('baseName').textContent=b?b.name:'未設定';
-  $('stat').textContent='記録 '+db.records.length+' 件';
+  $('stat').textContent='記録 '+db.records.length+' 件 / 服 '+db.wardrobe.length+' 着';
+  var k=getKey();
+  $('keyState').textContent=k?'キー: 保存済み(末尾 '+k.slice(-4)+')':'キー: 未設定';
+  $('gmodel').value=getModel();
 }
+$('gSave').addEventListener('click',function(){
+  var k=$('gkey').value.trim(),m=$('gmodel').value.trim();
+  if(k)localStorage.setItem(KEYLS,k);
+  if(m&&m!==DEFMODEL)localStorage.setItem(MODELLS,m);else localStorage.removeItem(MODELLS);
+  $('gkey').value='';renderSet();toast(k?'保存しました':'モデル名を保存しました');
+});
+$('gClear').addEventListener('click',function(){
+  if(!getKey())return;
+  if(!confirm('保存してあるキーを消しますか？(AI判定が使えなくなります)'))return;
+  localStorage.removeItem(KEYLS);renderSet();toast('キーを消しました');
+});
 locSearch($('baseQ'),$('baseRes'),function(x){
   db.settings.base={name:x.name,lat:x.lat,lon:x.lon};db.settingsAt=Date.now();save();renderSet();pushSettings().catch(syncErr);
   if(!cur.id&&cur.locIsBase){cur.loc={name:x.name,lat:x.lat,lon:x.lon};renderLoc();refreshWx()}
   toast('基本の地点を変えました');
 });
-function blobToDataUrl(b){return new Promise(function(res){var r=new FileReader();r.onload=function(){res(r.result)};r.readAsDataURL(b)})}
 $('exportBtn').addEventListener('click',function(){
-  var out={app:'outfit-log',version:1,exportedAt:new Date().toISOString(),settings:db.settings,records:db.records,photos:{}};
-  Promise.all(db.records.filter(function(r){return r.hasPhoto}).map(function(r){
-    return photoGet(r.id).then(function(b){return b?blobToDataUrl(b).then(function(u){out.photos[r.id]=u}):null});
-  })).then(function(){
+  var out={app:'outfit-log',version:2,exportedAt:new Date().toISOString(),settings:db.settings,records:db.records,wardrobe:db.wardrobe,photos:{},wphotos:{}};
+  var jobs=[];
+  db.records.filter(function(r){return r.hasPhoto}).forEach(function(r){jobs.push(photoGet(r.id).then(function(b){return b?blobToDataUrl(b).then(function(u){out.photos[r.id]=u}):null}))});
+  db.wardrobe.filter(function(w){return w.hasPhoto}).forEach(function(w){jobs.push(photoGet(w.id,'wphotos').then(function(b){return b?blobToDataUrl(b).then(function(u){out.wphotos[w.id]=u}):null}))});
+  Promise.all(jobs).then(function(){
     var blob=new Blob([JSON.stringify(out)],{type:'application/json'});
     var a=document.createElement('a');a.href=URL.createObjectURL(blob);
     var d=new Date();a.download='outfit-log-backup-'+d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+'.json';
-    document.body.appendChild(a);a.click();a.remove();toast('書き出しました');
+    document.body.appendChild(a);a.click();a.remove();toast('書き出しました(キーは入りません)');
   });
 });
 $('importBtn').addEventListener('click',function(){$('importFile').click()});
@@ -428,18 +930,21 @@ $('importFile').addEventListener('change',function(e){
   r.onload=function(){
     var j;try{j=JSON.parse(r.result)}catch(x){toast('読み込めないファイルです');return}
     if(!j||j.app!=='outfit-log'||!Array.isArray(j.records)){toast('このアプリのバックアップではありません');return}
-    if(!confirm('今の記録('+db.records.length+'件)を、ファイルの内容('+j.records.length+'件)で置き換えます。よろしいですか？'))return;
-    var photos=j.photos||{};
-    var ids=Object.keys(photos);
-    Promise.all(db.records.map(function(x){return photoDel(x.id)})).then(function(){
-      return Promise.all(ids.map(function(id){return fetch(photos[id]).then(function(q){return q.blob()}).then(function(b){return photoPut(id,b)})}));
+    var jw=Array.isArray(j.wardrobe)?j.wardrobe:[];
+    if(!confirm('今の記録('+db.records.length+'件)・服('+db.wardrobe.length+'着)を、ファイルの内容(記録'+j.records.length+'件・服'+jw.length+'着)で置き換えます。よろしいですか？'))return;
+    var photos=j.photos||{},wphotos=j.wphotos||{};
+    function putAll(map,st){return Promise.all(Object.keys(map).map(function(id){return fetch(map[id]).then(function(q){return q.blob()}).then(function(b){return photoPut(id,b,st)})}))}
+    Promise.all(db.records.map(function(x){return photoDel(x.id)}).concat(db.wardrobe.map(function(x){return photoDel(x.id,'wphotos')}))).then(function(){
+      return Promise.all([putAll(photos,'photos'),putAll(wphotos,'wphotos')]);
     }).then(function(){
-      var keep={},now=Date.now();
-      j.records.forEach(function(r){keep[r.id]=1});
+      var keep={},keepW={},now=Date.now();
+      j.records.forEach(function(x){keep[x.id]=1});jw.forEach(function(x){keepW[x.id]=1});
       db.records.forEach(function(o){if(!keep[o.id])db.tombs[o.id]=now});
-      j.records.forEach(function(r){delete db.tombs[r.id];r.updatedAt=now;r.photoAt=r.hasPhoto?now:0;r.syncedPhotoAt=0});
-      db.settings=j.settings||{base:null};db.settingsAt=now;db.records=j.records;urlCache={};save();
-      resetForm();renderSet();renderHist();toast('読み込みました');
+      db.wardrobe.forEach(function(o){if(!keepW[o.id])db.wtombs[o.id]=now});
+      j.records.forEach(function(x){delete db.tombs[x.id];x.updatedAt=now;x.photoAt=x.hasPhoto?now:0;x.syncedPhotoAt=0;if(!x.items)x.items=[]});
+      jw.forEach(function(x){delete db.wtombs[x.id];x.updatedAt=now});
+      db.settings=j.settings||{base:null};db.settingsAt=now;db.records=j.records;db.wardrobe=jw;urlCache={};wurl={};save();
+      resetForm();renderSet();renderHist();renderWard();toast('読み込みました');
       pushAll(null).catch(syncErr);
     }).catch(function(){toast('読み込み中に失敗しました')});
   };
@@ -448,10 +953,11 @@ $('importFile').addEventListener('change',function(e){
 
 /* ---------- タブ・更新 ---------- */
 function showTab(t){
-  ['shot','hist','set'].forEach(function(k){$('tab-'+k).classList.toggle('hide',k!==t)});
+  ['shot','hist','ward','set'].forEach(function(k){$('tab-'+k).classList.toggle('hide',k!==t)});
   document.querySelectorAll('.tabs button').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-t')===t)});
   if(t==='hist')renderHist();
   if(t==='set')renderSet();
+  if(t==='ward'){$('wFormView').classList.add('hide');$('wListView').classList.remove('hide');renderWard()}
 }
 document.querySelector('.tabs').addEventListener('click',function(e){var b=e.target.closest('button');if(b)showTab(b.getAttribute('data-t'))});
 $('reload').addEventListener('click',function(){location.reload()});
@@ -461,7 +967,8 @@ cur=newCur();renderForm();refreshWx();renderSet();
 
 /* ---------- クラウド同期(Firebase + Googleログイン) ---------- */
 // 他のアプリと同じFirebaseプロジェクト。保存先は users/{uid}/apps/outfit-log 配下。
-// 写真があるので1文書に収まらない(上限1MB)。記録は1件ごとの文書、写真は同期用に縮小して別の文書に置く。
+// 写真があるので1文書に収まらない(上限1MB)。記録とワードローブは1件ごとの文書にする。
+// 記録の写真は、同期用に縮小して別の文書に置く。服の写真は小さいので、服の文書に入れる。
 var FBC={
   apiKey:"AIzaSyAMy7k0bx1IyOu2eBCeiOnwclYtSEfrigY",
   authDomain:"nemui-neko-apps.firebaseapp.com",
@@ -470,10 +977,11 @@ var FBC={
   messagingSenderId:"433296418616",
   appId:"1:433296418616:web:bf83c521c8355487c883cd"
 };
-var fb={user:null,db:null,unsubR:null,unsubS:null,warned:false};
+var fb={user:null,db:null,unsubR:null,unsubS:null,unsubW:null,warned:false};
 function appDoc(){return fb.db.collection('users').doc(fb.user.uid).collection('apps').doc('outfit-log')}
 function recCol(){return appDoc().collection('records')}
 function phCol(){return appDoc().collection('photos')}
+function wardCol(){return appDoc().collection('wardrobe')}
 function syncErr(e){
   console.warn(e);
   if(!fb.warned){fb.warned=true;toast('同期に失敗しました(通信か、Firestoreのルールを確認)')}
@@ -494,22 +1002,34 @@ function pushRecord(r){
   var p=Promise.resolve();
   if(r.hasPhoto&&(r.photoAt||0)>(r.syncedPhotoAt||0))p=uploadPhoto(r);
   return p.then(function(){
-    return recCol().doc(r.id).set(clean({id:r.id,dt:r.dt,date:r.date,fav:r.fav||0,comment:r.comment||'',weather:r.weather||null,hasPhoto:!!r.hasPhoto,photoAt:r.photoAt||0,updatedAt:r.updatedAt||0,deleted:false}));
+    return recCol().doc(r.id).set(clean({id:r.id,dt:r.dt,date:r.date,fav:r.fav||0,comment:r.comment||'',weather:r.weather||null,hasPhoto:!!r.hasPhoto,photoAt:r.photoAt||0,items:r.items||[],confirmed:!!r.confirmed,ai:r.ai||null,updatedAt:r.updatedAt||0,deleted:false}));
   });
 }
 function pushTomb(id){
   if(!fb.user)return Promise.resolve();
   return recCol().doc(id).set({id:id,deleted:true,updatedAt:db.tombs[id]||Date.now()}).then(function(){return phCol().doc(id).delete()});
 }
+function pushWard(w){
+  if(!fb.user)return Promise.resolve();
+  return (w.hasPhoto?photoGet(w.id,'wphotos').then(function(b){return b?blobToDataUrl(b):null}):Promise.resolve(null)).then(function(u){
+    return wardCol().doc(w.id).set(clean({id:w.id,name:w.name,cat:w.cat,color:w.color||'',brand:w.brand||'',price:w.price==null?null:w.price,bought:w.bought||'',sold:w.sold==null?null:w.sold,hasPhoto:!!u,photo:u||null,updatedAt:w.updatedAt||0,deleted:false}));
+  });
+}
+function pushWTomb(id){
+  if(!fb.user)return Promise.resolve();
+  return wardCol().doc(id).set({id:id,deleted:true,updatedAt:db.wtombs[id]||Date.now()});
+}
 function pushSettings(){
   if(!fb.user)return Promise.resolve();
   return appDoc().set(clean({base:db.settings.base||null,updatedAt:db.settingsAt||0}));
 }
-function pushAll(skipIds){
+function pushAll(skipIds,skipW){
   if(!fb.user)return Promise.resolve();
   var jobs=[];
   db.records.forEach(function(r){if(!skipIds||!skipIds[r.id])jobs.push(pushRecord(r))});
   Object.keys(db.tombs).forEach(function(id){if(!skipIds||!skipIds[id])jobs.push(pushTomb(id))});
+  db.wardrobe.forEach(function(w){if(!skipW||!skipW[w.id])jobs.push(pushWard(w))});
+  Object.keys(db.wtombs).forEach(function(id){if(!skipW||!skipW[id])jobs.push(pushWTomb(id))});
   return Promise.all(jobs);
 }
 function downloadPhoto(r,d){
@@ -536,11 +1056,27 @@ function applyRemoteRec(d){
     if(d.hasPhoto&&(loc.photoAt||0)<(d.photoAt||0))return downloadPhoto(loc,d);
     return Promise.resolve();
   }
-  var rec={id:id,dt:d.dt,date:d.date,fav:d.fav||0,comment:d.comment||'',weather:d.weather||null,hasPhoto:loc?!!loc.hasPhoto:false,photoAt:loc?loc.photoAt||0:0,syncedPhotoAt:loc?loc.syncedPhotoAt||0:0,updatedAt:rAt};
+  var rec={id:id,dt:d.dt,date:d.date,fav:d.fav||0,comment:d.comment||'',weather:d.weather||null,items:d.items||[],confirmed:!!d.confirmed,ai:d.ai||null,hasPhoto:loc?!!loc.hasPhoto:false,photoAt:loc?loc.photoAt||0:0,syncedPhotoAt:loc?loc.syncedPhotoAt||0:0,updatedAt:rAt};
   if(loc)db.records[i]=rec;else db.records.push(rec);
   delete db.tombs[id];save();
   if(d.hasPhoto&&(rec.photoAt||0)<(d.photoAt||0))return downloadPhoto(rec,d);
   return Promise.resolve();
+}
+function applyRemoteWard(d){
+  var id=d.id,i=wIdx(id),loc=i>=0?db.wardrobe[i]:null,rAt=d.updatedAt||0;
+  if(d.deleted){
+    if(loc&&(loc.updatedAt||0)>rAt)return pushWard(loc);
+    if(loc){db.wardrobe.splice(i,1);delete wurl[id]}
+    db.wtombs[id]=rAt;save();return photoDel(id,'wphotos');
+  }
+  if((db.wtombs[id]||0)>rAt)return pushWTomb(id);
+  if(loc&&(loc.updatedAt||0)>rAt)return pushWard(loc);
+  if(loc&&(loc.updatedAt||0)===rAt)return Promise.resolve();
+  var w={id:id,name:d.name||'',cat:d.cat||'その他',color:d.color||'',brand:d.brand||'',price:d.price==null?null:d.price,bought:d.bought||'',sold:d.sold==null?null:d.sold,hasPhoto:!!d.photo,updatedAt:rAt};
+  if(loc)db.wardrobe[i]=w;else db.wardrobe.push(w);
+  delete db.wtombs[id];save();delete wurl[id];
+  if(!d.photo)return Promise.resolve();
+  return fetch(d.photo).then(function(q){return q.blob()}).then(function(b){return photoPut(id,b,'wphotos')});
 }
 function applyRemoteSettings(r){
   if((r.updatedAt||0)>(db.settingsAt||0)){
@@ -554,10 +1090,12 @@ function applyRemoteSettings(r){
 function refreshUI(){
   renderSet();
   if(!$('tab-hist').classList.contains('hide'))renderHist();
+  if(!$('tab-ward').classList.contains('hide')&&!$('wListView').classList.contains('hide'))renderWard();
 }
 function startSync(){
   fb.warned=false;
-  var first=true;
+  var firstR=true,firstW=true,seenR=null,seenW=null;
+  function firstDone(){if(seenR&&seenW&&firstR===false&&firstW===false){pushAll(seenR,seenW).catch(syncErr);seenR=seenW=null}}
   fb.unsubS=appDoc().onSnapshot(function(s){
     if(s.metadata.hasPendingWrites)return;
     if(!s.exists){if(db.settings.base&&db.settingsAt)pushSettings().catch(syncErr);return}
@@ -570,16 +1108,30 @@ function startSync(){
       if(c.doc.metadata.hasPendingWrites)return;
       docs.push(c.doc.data());
     });
-    var seen={};
-    snap.forEach(function(x){seen[x.id]=1});
+    var wasFirst=firstR;
+    if(wasFirst){seenR={};snap.forEach(function(x){seenR[x.id]=1})}
     Promise.all(docs.map(applyRemoteRec)).then(function(){
-      if(first){first=false;return pushAll(seen)}
+      if(wasFirst){firstR=false;firstDone()}
+    }).then(function(){if(docs.length)refreshUI()}).catch(syncErr);
+  },syncErr);
+  fb.unsubW=wardCol().onSnapshot(function(snap){
+    var docs=[];
+    snap.docChanges().forEach(function(c){
+      if(c.type==='removed')return;
+      if(c.doc.metadata.hasPendingWrites)return;
+      docs.push(c.doc.data());
+    });
+    var wasFirst=firstW;
+    if(wasFirst){seenW={};snap.forEach(function(x){seenW[x.id]=1})}
+    Promise.all(docs.map(applyRemoteWard)).then(function(){
+      if(wasFirst){firstW=false;firstDone()}
     }).then(function(){if(docs.length)refreshUI()}).catch(syncErr);
   },syncErr);
 }
 function stopSync(){
   if(fb.unsubR){fb.unsubR();fb.unsubR=null}
   if(fb.unsubS){fb.unsubS();fb.unsubS=null}
+  if(fb.unsubW){fb.unsubW();fb.unsubW=null}
 }
 function renderSyncUI(){
   var b=$('syncBtn');
