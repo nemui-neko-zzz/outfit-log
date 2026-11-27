@@ -46,8 +46,8 @@ textarea{min-height:70px;resize:vertical}
 .res{margin-top:8px}.res button{display:block;width:100%;text-align:left;padding:10px;border:0;border-bottom:1px solid #eee;background:#fff;font-size:15px;color:#222}
 .sync-btn{border:1px solid #d8d8d2;background:#fff;color:#777;border-radius:18px;height:36px;padding:0 12px;font-size:13px;font-weight:700;white-space:nowrap;min-width:76px}
 .sync-btn.on{background:#2f8f5b;border-color:#2f8f5b;color:#fff}
-.tabs{position:fixed;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(4,1fr);background:rgba(255,255,255,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid #e4e4de;padding-bottom:env(safe-area-inset-bottom,0px);z-index:5}
-.tabs button{border:0;background:none;padding:14px 0;font-size:14px;color:#888;white-space:nowrap}
+.tabs{position:fixed;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(5,1fr);background:rgba(255,255,255,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid #e4e4de;padding-bottom:env(safe-area-inset-bottom,0px);z-index:5}
+.tabs button{border:0;background:none;padding:14px 0;font-size:12px;color:#888;white-space:nowrap}
 .tabs button.on{color:#2f8f5b;font-weight:700}
 .mon{font-size:13px;color:#666;margin:14px 2px 6px;font-weight:600}
 .item{display:flex;gap:12px;background:#fff;border-radius:14px;padding:10px;margin-bottom:8px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
@@ -92,6 +92,66 @@ textarea{min-height:70px;resize:vertical}
 .sw.on{border-color:#2f8f5b;background:#eaf6ef;font-weight:700}
 .sublab{font-size:11px;color:#999;margin:8px 0 4px}
 .sw.nl{padding:5px 13px}
+.wg{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.wt{background:#fff;border-radius:12px;padding:8px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.wt .ph{aspect-ratio:1/1;border-radius:8px;background:#f1f1ed;overflow:hidden}
+.wt .ph img{width:100%;height:100%;object-fit:contain;display:block;background:#fff}
+.wt .br{font-size:11px;color:#888;margin-top:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-height:14px}
+.wt .nm2{font-size:13px;line-height:1.35;height:35px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.wt .pr{font-size:15px;font-weight:700;margin-top:4px}
+.wt .pr.none{font-size:12px;font-weight:400;color:#bbb}
+.wt .ft{font-size:11px;color:#777;margin-top:2px}
+.calhead{display:flex;justify-content:space-between;align-items:center;margin:4px 0 8px}
+.calhead b{font-size:16px}
+.calgrid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.calwd{font-size:11px;color:#999;text-align:center;padding:2px 0}
+.calwd.su,.cd.su .n{color:#c0392b}.calwd.sa,.cd.sa .n{color:#2b6cb0}
+.cd{background:#fff;border-radius:8px;min-height:56px;padding:4px 2px;font-size:11px;color:#444;text-align:center;overflow:hidden}
+.cd.out{background:transparent}
+.cd.has{cursor:pointer;box-shadow:0 1px 2px rgba(0,0,0,.06)}
+.cd.today .n{background:#2f8f5b;color:#fff!important;border-radius:9px;padding:0 6px}
+.cd .dots{display:flex;flex-wrap:wrap;gap:2px;justify-content:center;margin-top:4px}
+.cd .dots i{width:9px;height:9px;border-radius:5px;border:1px solid rgba(0,0,0,.2);display:block}
+.cd .dots i.f{opacity:.35}
+.cd .thumbs{display:none;grid-template-columns:1fr 1fr;gap:2px;margin-top:4px}
+.cd .thumbs img{width:100%;aspect-ratio:1/1;object-fit:contain;background:#fff;border:1px solid #eee;border-radius:4px;display:block}
+.cd .thumbs img.f{opacity:.4}
+.cd .cam{display:none;width:10px;height:10px;background:#1a73e8;border-radius:5px;margin:4px auto 0}
+.cd .many{font-size:10px;color:#888}
+.statcards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.sc{background:#fff;border-radius:14px;padding:12px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.sc .l{font-size:12px;color:#666}
+.sc .v{font-size:22px;font-weight:700;margin-top:4px;white-space:nowrap}
+.sc .v small{font-size:13px;font-weight:600;margin-left:2px}
+.sc .v.g{color:#2f8f5b}
+.sc .s{font-size:11px;color:#888;margin-top:2px}
+.rk{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0ec}
+.rk:last-child{border-bottom:0}
+.rk .no{width:24px;height:24px;border-radius:12px;background:#eaf6ef;color:#2f8f5b;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.rk.low .no{background:#fdecea;color:#c0392b}
+.rk .th{width:44px;height:44px;border-radius:8px;background:#f1f1ed;overflow:hidden;flex-shrink:0}
+.rk .th img{width:100%;height:100%;object-fit:contain;background:#fff;display:block}
+.rk .info{flex:1;min-width:0}
+.rk .t{font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rk .s{font-size:11px;color:#888;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rk .bd{font-size:12px;font-weight:700;background:#eef0ee;border-radius:10px;padding:2px 9px;flex-shrink:0}
+.rk.low .bd{background:#fdecea;color:#c0392b}
+.rank2 h2{margin-bottom:6px}
+@media (min-width:768px){
+  body{padding-left:200px}
+  .tabs{top:0;right:auto;bottom:0;width:200px;display:flex;flex-direction:column;border-top:0;border-right:1px solid #e4e4de;padding:90px 0 0;background:#fff}
+  .tabs button{text-align:left;padding:14px 26px;font-size:15px}
+  .wrap{max-width:1080px;padding-bottom:40px}
+  #tab-shot,#tab-set{max-width:560px;margin:0 auto}
+  .wg{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .cd{min-height:132px;padding:6px 4px}
+  .cd .dots{display:none}.cd .thumbs{display:grid}.cd .cam{display:block}
+  .statcards{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .rank2{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+  #histList{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 12px}
+  #histList .mon{grid-column:1/-1}
+  .toast{bottom:30px}
+}
 .toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 80px);transform:translateX(-50%);background:rgba(40,40,40,.88);color:#fff;padding:10px 16px;border-radius:20px;font-size:14px;width:max-content;max-width:min(90vw,420px);z-index:30;opacity:0;pointer-events:none;transition:opacity .2s}
 .toast.show{opacity:1}
 .hide{display:none!important}
@@ -152,12 +212,35 @@ textarea{min-height:70px;resize:vertical}
 
   <!-- 履歴 -->
   <section id="tab-hist" class="hide">
-    <div class="chips" id="hChips">
-      <button data-f="all" class="on">すべて</button>
-      <button data-f="pending">確認待ち <span id="pn"></span></button>
+    <div class="chips" id="hView">
+      <button data-v="list" class="on">リスト</button>
+      <button data-v="cal">カレンダー</button>
     </div>
-    <div class="hint" id="hHint" style="margin:-4px 2px 10px"></div>
-    <div id="histList"></div>
+    <div id="hListWrap">
+      <div class="chips" id="hChips">
+        <button data-f="all" class="on">すべて</button>
+        <button data-f="pending">確認待ち <span id="pn"></span></button>
+      </div>
+      <div class="hint" id="hHint" style="margin:-4px 2px 10px"></div>
+      <div class="row hide" id="bulkRow" style="margin:0 0 10px"><button class="btn sm" id="bulkAi">未確定をまとめてAI判定</button><span class="hint" id="bulkHint" style="margin:0"></span></div>
+      <div id="histList"></div>
+    </div>
+    <div id="hCalWrap" class="hide">
+      <div class="calhead"><button class="ibtn" id="calPrev" aria-label="前の月">&#8249;</button><b id="calTitle"></b><button class="ibtn" id="calNext" aria-label="次の月">&#8250;</button></div>
+      <div class="calgrid" id="calWd"></div>
+      <div class="calgrid" id="calGrid" style="margin-top:4px"></div>
+      <div class="hint" style="margin-top:8px">色の点は、着た服の色です。薄い点は「確認待ち」の候補です。日をタップすると、その日の記録が開きます。</div>
+    </div>
+  </section>
+
+  <!-- 統計 -->
+  <section id="tab-stat" class="hide">
+    <div class="statcards" id="statCards"></div>
+    <div class="row" style="gap:8px;margin:12px 0">
+      <select id="sCat" style="flex:1"></select>
+      <select id="sStat" style="flex:1"><option value="active">アクティブ</option><option value="archived">アーカイブ</option><option value="all">すべて</option></select>
+    </div>
+    <div class="rank2"><div class="card" id="rankTop"></div><div class="card" id="rankLow"></div></div>
   </section>
 
   <!-- ワードローブ -->
@@ -167,8 +250,9 @@ textarea{min-height:70px;resize:vertical}
         <div id="wCount" style="font-size:14px;color:#666"></div>
         <button class="btn green sm" id="wAdd">＋ 服を登録</button>
       </div>
+      <div class="chips" id="wStat"></div>
       <div class="chips" id="wChips"></div>
-      <div class="grid" id="wGrid"></div>
+      <div class="grid wg" id="wGrid"></div>
     </div>
     <div id="wFormView" class="hide">
       <div class="edithead"><button class="back" id="wBack">&#8249; 戻る</button><span id="wFormLabel">服を登録</span><span class="sp"></span></div>
@@ -202,6 +286,8 @@ textarea{min-height:70px;resize:vertical}
         </div>
         <label class="f" for="wSold">売却額(円・手放したときだけ)</label>
         <input type="number" inputmode="numeric" id="wSold">
+        <label class="f" style="display:flex;align-items:center;gap:10px;margin-top:16px;color:#333;font-size:15px"><input type="checkbox" id="wArch" style="width:22px;height:22px;flex-shrink:0"> 手放した(アーカイブ)</label>
+        <div class="hint">アーカイブにすると、AI判定の候補と服の選択から外れます。統計では、アクティブとは別に数えます。</div>
         <div class="hint" id="wStats"></div>
       </div>
       <div class="btns">
@@ -256,10 +342,16 @@ textarea{min-height:70px;resize:vertical}
   <div class="grid" id="pickGrid"></div>
 </div>
 
+<div class="overlay hide" id="dayOv">
+  <div class="head"><b id="dayTitle"></b><button class="btn green sm" id="dayClose">閉じる</button></div>
+  <div id="dayList"></div>
+</div>
+
 <nav class="tabs">
   <button data-t="shot" class="on">撮影</button>
   <button data-t="hist">履歴</button>
   <button data-t="ward">ワードローブ</button>
+  <button data-t="stat">統計</button>
   <button data-t="set">設定</button>
 </nav>
 <div class="toast" id="toast"></div>
@@ -606,15 +698,15 @@ function askGemini(outfitBlob,items){
     return txt;
   });
 }
-function runAI(id){
+function runAI(id,quiet){
   var r=db.records.find(function(x){return x.id===id});
   if(!r||!r.hasPhoto){return Promise.resolve()}
   if(!getKey()){toast('設定でGeminiのキーを入れてください');return Promise.resolve()}
-  var ws=db.wardrobe.filter(function(w){return w.hasPhoto&&w.cat!=='インナー'}); // 肌着は写真に写らないので、AIには見せない
+  var ws=db.wardrobe.filter(function(w){return w.hasPhoto&&w.cat!=='インナー'&&!w.archived}); // 肌着は写真に写らないので、AIには見せない
   if(!ws.length){toast('ワードローブに写真つきの服を登録してください');return Promise.resolve()}
   if(aiBusy[id])return Promise.resolve();
-  aiBusy[id]=true;toast('AI判定中…(数十秒かかります)');
-  var map={};
+  aiBusy[id]=true;if(!quiet)toast('AI判定中…(数十秒かかります)');
+  var map={},ok=false;
   return Promise.all([photoGet(id)].concat(ws.map(function(w){return photoGet(w.id,'wphotos')}))).then(function(bl){
     var outfit=bl[0];if(!outfit)throw new Error('nophoto');
     var items=[];
@@ -630,12 +722,13 @@ function runAI(id){
     rec.updatedAt=Date.now();save();
     if(cur&&cur.id===id){cur.ai=rec.ai;cur.cands=cands;if(!cur.confirmed)cur.sel=rec.items.slice();renderWear()}
     refreshUI();pushRecord(rec).catch(syncErr);
-    toast(cands.length?'AI判定が終わりました。履歴の「確認待ち」から確認できます':'AIが服を見つけられませんでした');
+    ok=true;
+    if(!quiet)toast(cands.length?'AI判定が終わりました。履歴の「確認待ち」から確認できます':'AIが服を見つけられませんでした');
   }).catch(function(e){
     console.warn(e);
     var m=String(e&&e.message||'');
     toast(m.indexOf('http 400')===0||m.indexOf('http 403')===0?'AI判定に失敗(キーかモデル名を確認)':m.indexOf('http 429')===0?'AI判定の回数制限です。少し待ってやり直してください':'AI判定に失敗しました(通信を確認)');
-  }).then(function(){delete aiBusy[id]});
+  }).then(function(){delete aiBusy[id];return ok});
 }
 
 /* ---------- 着ていた服(編集画面の確認カード) ---------- */
@@ -692,7 +785,7 @@ var pickCat='all';
 function openPicker(){pickCat='all';renderPicker();$('picker').classList.remove('hide')}
 function renderPicker(){
   renderChips($('pickChips'),pickCat);
-  var list=db.wardrobe.filter(function(w){return pickCat==='all'||w.cat===pickCat});
+  var list=db.wardrobe.filter(function(w){return (pickCat==='all'||w.cat===pickCat)&&(!w.archived||cur.sel.indexOf(w.id)>=0)});
   var h='';
   list.forEach(function(w){
     h+='<div class="tile'+(cur.sel.indexOf(w.id)>=0?' sel':'')+'" data-id="'+esc(w.id)+'"><div class="ph">'+(w.hasPhoto?'<img data-wid="'+esc(w.id)+'" alt="">':'')+'</div><div class="nm">'+esc(w.name)+'</div></div>';
@@ -728,7 +821,14 @@ function badge(r){
   if(r.hasPhoto&&db.wardrobe.length)return '<span class="badge none">未判定</span>';
   return '';
 }
+var hview='list';
 function renderHist(){
+  document.querySelectorAll('#hView button').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-v')===hview)});
+  $('hListWrap').classList.toggle('hide',hview!=='list');$('hCalWrap').classList.toggle('hide',hview!=='cal');
+  if(hview==='cal'){renderCal();return}
+  var unc=db.records.filter(function(r){return r.hasPhoto&&!r.confirmed});
+  $('bulkRow').classList.toggle('hide',!(unc.length&&canAI()));
+  $('bulkHint').textContent=unc.length+'件(1回に新しい順で最大20件。1件=AI判定1回)';
   var box=$('histList');
   var pend=db.records.filter(isPending);
   $('pn').textContent=pend.length?'('+pend.length+')':'';
@@ -756,18 +856,99 @@ function renderHist(){
   box.querySelectorAll('img[data-pid]').forEach(function(im){loadImg(im,im.getAttribute('data-pid'),'photos')});
 }
 $('hChips').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;hfilter=b.getAttribute('data-f');renderHist()});
-$('histList').addEventListener('click',function(e){
-  var it=e.target.closest('.item');if(!it)return;
-  var id=it.getAttribute('data-id');
+function openRecord(id){
   var r=db.records.find(function(x){return x.id===id});if(!r)return;
   cur={id:r.id,photoAt:r.photoAt||0,photoBlob:null,photoUrl:null,dt:r.dt,fav:r.fav||0,comment:r.comment||'',loc:r.weather&&r.weather.loc?r.weather.loc:(db.settings.base||null),locIsBase:false,weather:r.weather||null,wxBusy:false,cands:(r.ai&&r.ai.cands)?r.ai.cands.slice():[],sel:(r.items||[]).slice(),confirmed:!!r.confirmed,ai:r.ai||null};
   setPhotoUrl(null);
   if(r.hasPhoto)photoGet(r.id).then(function(b){if(b&&cur.id===r.id&&!cur.photoBlob)setPhotoUrl(URL.createObjectURL(b))});
   renderForm();showTab('shot');window.scrollTo(0,0);
+}
+$('histList').addEventListener('click',function(e){var it=e.target.closest('.item');if(it)openRecord(it.getAttribute('data-id'))});
+$('hView').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;hview=b.getAttribute('data-v');renderHist()});
+
+// 未確定の記録を、新しい順に最大20件、続けてAI判定する
+$('bulkAi').addEventListener('click',function(){
+  var ids=db.records.filter(function(r){return r.hasPhoto&&!r.confirmed}).sort(function(a,b){return a.dt<b.dt?1:-1}).slice(0,20).map(function(r){return r.id});
+  if(!ids.length)return;
+  if(!confirm(ids.length+'件をAI判定します(AI判定を'+ids.length+'回使います)。よろしいですか？\n服を新しく登録したあとの、やり直しに使えます。'))return;
+  var done=0;
+  ids.reduce(function(p,id){return p.then(function(go){
+    if(go===false)return false;
+    toast('AI判定中… '+(done+1)+' / '+ids.length);
+    return runAI(id,true).then(function(ok){if(ok)done++;return ok});
+  })},Promise.resolve(true)).then(function(){toast(done+' / '+ids.length+'件の判定が終わりました。「確認待ち」から確認できます');refreshUI()});
 });
 
+/* ---------- カレンダー ---------- */
+var cal={y:new Date().getFullYear(),m:new Date().getMonth()+1};
+function colorBg(name){
+  if(name==='柄・マルチ')return 'background:conic-gradient(#c8312f,#e8c53a,#3d8a4f,#3b78c4,#7a52a0,#c8312f)';
+  var c=COLORS.find(function(x){return x.n===name});return 'background:'+(c?c.c:'#bbb');
+}
+// その日の記録から、着た服(確定は濃く、確認待ちは薄く)を取り出す
+function dayItems(recs){
+  var seen={},out=[];
+  recs.slice().sort(function(a,b){return a.dt<b.dt?1:-1}).forEach(function(r){
+    (r.items||[]).forEach(function(id){
+      var w=wById(id);if(!w||seen[id])return;seen[id]=1;
+      out.push({id:id,w:w,faded:!r.confirmed});
+    });
+  });
+  return out;
+}
+function renderCal(){
+  var y=cal.y,m=cal.m,dim=new Date(y,m,0).getDate(),dow=new Date(y,m-1,1).getDay();
+  var days=['日','月','火','水','木','金','土'];
+  $('calTitle').textContent=y+'年'+m+'月';
+  $('calWd').innerHTML=days.map(function(d,i){return '<div class="calwd'+(i===0?' su':i===6?' sa':'')+'">'+d+'</div>'}).join('');
+  var by={};db.records.forEach(function(r){(by[r.date]=by[r.date]||[]).push(r)});
+  var todayKey=localDay(),h='';
+  for(var i=0;i<dow;i++)h+='<div class="cd out"></div>';
+  for(var d=1;d<=dim;d++){
+    var key=y+'-'+pad(m)+'-'+pad(d),recs=by[key]||[],wd=(dow+d-1)%7;
+    var cls='cd'+(recs.length?' has':'')+(key===todayKey?' today':'')+(wd===0?' su':wd===6?' sa':'');
+    var inner='<div class="n">'+d+'</div>';
+    if(recs.length){
+      var its=dayItems(recs),dots='',seenC={},nd=0;
+      its.forEach(function(it){
+        var cn=it.w.color||'その他';var k=cn+(it.faded?'f':'s');
+        if(seenC[k]||nd>=4)return;seenC[k]=1;nd++;
+        dots+='<i class="'+(it.faded?'f':'')+'" style="'+colorBg(cn)+'"></i>';
+      });
+      if(!dots)dots='<i style="background:#ccc"></i>';
+      inner+='<div class="dots">'+dots+'</div>';
+      var th=its.slice(0,4).map(function(it){return it.w.hasPhoto?'<img class="'+(it.faded?'f':'')+'" data-wid="'+esc(it.id)+'" alt="">':'<span></span>'}).join('');
+      inner+='<div class="thumbs">'+th+'</div><div class="cam"></div>';
+      if(recs.length>1)inner+='<div class="many">'+recs.length+'件</div>';
+    }
+    h+='<div class="'+cls+'" data-d="'+key+'">'+inner+'</div>';
+  }
+  $('calGrid').innerHTML=h;
+  $('calGrid').querySelectorAll('img[data-wid]').forEach(function(im){loadImg(im,im.getAttribute('data-wid'),'wphotos')});
+}
+$('calPrev').addEventListener('click',function(){cal.m--;if(cal.m<1){cal.m=12;cal.y--}renderCal()});
+$('calNext').addEventListener('click',function(){cal.m++;if(cal.m>12){cal.m=1;cal.y++}renderCal()});
+function dayItemHtml(r){
+  var names=(r.items||[]).map(function(x){var w=wById(x);return w?w.name:null}).filter(Boolean);
+  var wx=shortWx(r.weather);
+  return '<div class="item" data-id="'+esc(r.id)+'"><div class="th">'+(r.hasPhoto?'<img data-pid="'+esc(r.id)+'" alt="">':'')+'</div><div class="tx"><div class="d">'+esc(r.dt.slice(11,16))+badge(r)+'</div>'
+    +(wx?'<div>'+esc(wx)+'</div>':'')+(r.fav?'<div class="s">'+stars(r.fav)+'</div>':'')+(names.length?'<div class="c">'+esc(names.join('、'))+'</div>':'')+'</div></div>';
+}
+$('calGrid').addEventListener('click',function(e){
+  var c=e.target.closest('.cd.has');if(!c)return;
+  var key=c.getAttribute('data-d');
+  var recs=db.records.filter(function(r){return r.date===key}).sort(function(a,b){return a.dt<b.dt?1:-1});
+  if(recs.length===1){openRecord(recs[0].id);return}
+  $('dayTitle').textContent=jpDate(key);
+  $('dayList').innerHTML=recs.map(dayItemHtml).join('');
+  $('dayList').querySelectorAll('img[data-pid]').forEach(function(im){loadImg(im,im.getAttribute('data-pid'),'photos')});
+  $('dayOv').classList.remove('hide');
+});
+$('dayList').addEventListener('click',function(e){var it=e.target.closest('.item');if(!it)return;$('dayOv').classList.add('hide');openRecord(it.getAttribute('data-id'))});
+$('dayClose').addEventListener('click',function(){$('dayOv').classList.add('hide')});
+
 /* ---------- ワードローブ ---------- */
-var wfilter='all',wcur=null;
+var wfilter='all',wcur=null,wstat='active';
 function renderChips(el,active){
   var h='<button data-c="all" class="'+(active==='all'?'on':'')+'">すべて</button>';
   CATS.forEach(function(c){h+='<button data-c="'+esc(c)+'" class="'+(active===c?'on':'')+'">'+esc(c)+'</button>'});
@@ -776,13 +957,19 @@ function renderChips(el,active){
 function renderWard(){
   renderChips($('wChips'),wfilter);
   var cnt=wearCounts();
-  var list=db.wardrobe.filter(function(w){return wfilter==='all'||w.cat===wfilter}).sort(function(a,b){return (b.updatedAt||0)-(a.updatedAt||0)});
-  $('wCount').textContent=db.wardrobe.length+'着';
+  var nAct=db.wardrobe.filter(function(w){return !w.archived}).length,nArc=db.wardrobe.length-nAct;
+  $('wStat').innerHTML='<button data-s="active" class="'+(wstat==='active'?'on':'')+'">アクティブ('+nAct+')</button><button data-s="archived" class="'+(wstat==='archived'?'on':'')+'">アーカイブ('+nArc+')</button>';
+  var list=db.wardrobe.filter(function(w){return (wstat==='archived')===!!w.archived&&(wfilter==='all'||w.cat===wfilter)}).sort(function(a,b){return (b.updatedAt||0)-(a.updatedAt||0)});
+  $('wCount').textContent=list.length+'着';
   var h='';
   list.forEach(function(w){
-    h+='<div class="tile" data-id="'+esc(w.id)+'"><div class="ph">'+(w.hasPhoto?'<img data-wid="'+esc(w.id)+'" alt="">':'')+'</div><div class="nm">'+esc(w.name)+'</div><div class="ct">'+(cnt[w.id]||0)+'回</div></div>';
+    var n=cnt[w.id]||0;
+    h+='<div class="wt tile" data-id="'+esc(w.id)+'"><div class="ph">'+(w.hasPhoto?'<img data-wid="'+esc(w.id)+'" alt="">':'')+'</div>'
+      +'<div class="br">'+esc(w.brand||'')+'</div><div class="nm2">'+esc(w.name)+'</div>'
+      +(w.price!=null?'<div class="pr">'+yen(w.price)+'</div>':'<div class="pr none">価格なし</div>')
+      +'<div class="ft">'+n+'回'+(w.price!=null&&n>0?' · '+yen(w.price/n)+'/回':'')+'</div></div>';
   });
-  $('wGrid').innerHTML=h||'<div class="empty" style="grid-column:1/-1">'+(db.wardrobe.length?'このカテゴリの服はありません':'まだ服がありません。「＋ 服を登録」から追加してください')+'</div>';
+  $('wGrid').innerHTML=h||'<div class="empty" style="grid-column:1/-1">'+(db.wardrobe.length?'この条件の服はありません':'まだ服がありません。「＋ 服を登録」から追加してください')+'</div>';
   $('wGrid').querySelectorAll('img[data-wid]').forEach(function(im){loadImg(im,im.getAttribute('data-wid'),'wphotos')});
 }
 function showWList(){$('wFormView').classList.add('hide');$('wListView').classList.remove('hide');renderWard();window.scrollTo(0,0)}
@@ -983,6 +1170,7 @@ function openWForm(w){
   $('wPrice').value=w&&w.price!=null?w.price:'';
   $('wBought').value=w?(w.bought||''):'';
   $('wSold').value=w&&w.sold!=null?w.sold:'';
+  $('wArch').checked=w?!!w.archived:false;
   $('wFormLabel').textContent=w?'服を編集':'服を登録';
   $('wDel').classList.toggle('hide',!w);
   $('wSaveNext').classList.toggle('hide',!!w);
@@ -1000,6 +1188,7 @@ function openWForm(w){
 $('wCat').innerHTML=CATS.map(function(c){return '<option>'+esc(c)+'</option>'}).join('');
 $('wAdd').addEventListener('click',function(){openWForm(null)});
 $('wBack').addEventListener('click',showWList);
+$('wStat').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;wstat=b.getAttribute('data-s');renderWard()});
 $('wChips').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;wfilter=b.getAttribute('data-c');renderWard()});
 $('wGrid').addEventListener('click',function(e){
   var t=e.target.closest('.tile');if(!t)return;
@@ -1018,7 +1207,7 @@ function saveWard(next){
   applyBg(); // 仕上がりが出たままなら、その写真を保存する
   var id=wcur.id||uid('w');
   var old=wById(id);
-  var w={id:id,name:name,cat:$('wCat').value,color:(wcur.color==='その他'?($('wColor').value.trim()||'その他'):(wcur.color||'')),brand:$('wBrand').value.trim(),bgDone:!!wcur.bgDone,len:(lenOptions($('wCat').value).indexOf(wcur.len)>=0?wcur.len:''),price:numOrNull($('wPrice').value),bought:$('wBought').value||'',sold:numOrNull($('wSold').value),hasPhoto:!!(wcur.photoBlob||(old&&old.hasPhoto)),updatedAt:Date.now()};
+  var w={id:id,name:name,cat:$('wCat').value,color:(wcur.color==='その他'?($('wColor').value.trim()||'その他'):(wcur.color||'')),brand:$('wBrand').value.trim(),bgDone:!!wcur.bgDone,archived:$('wArch').checked,len:(lenOptions($('wCat').value).indexOf(wcur.len)>=0?wcur.len:''),price:numOrNull($('wPrice').value),bought:$('wBought').value||'',sold:numOrNull($('wSold').value),hasPhoto:!!(wcur.photoBlob||(old&&old.hasPhoto)),updatedAt:Date.now()};
   var i=wIdx(id);if(i>=0)db.wardrobe[i]=w;else db.wardrobe.push(w);
   delete db.wtombs[id];
   var p=wcur.photoBlob?photoPut(id,wcur.photoBlob,'wphotos'):Promise.resolve();
@@ -1039,6 +1228,47 @@ $('wDel').addEventListener('click',function(){
   db.wtombs[id]=Date.now();save();delete wurl[id];
   photoDel(id,'wphotos').then(function(){toast('削除しました');showWList();pushWTomb(id).catch(syncErr)});
 });
+
+/* ---------- 統計 ---------- */
+function lastWornMap(){
+  var m={};
+  db.records.forEach(function(r){if(r.confirmed&&r.items)r.items.forEach(function(id){if(!m[id]||r.date>m[id])m[id]=r.date})});
+  return m;
+}
+function statSummary(){
+  var cnt=wearCounts(),items=db.wardrobe,act=0,arc=0,wears=0,total=0,num=0,den=0;
+  items.forEach(function(w){
+    if(w.archived)arc++;else act++;
+    var n=cnt[w.id]||0;wears+=n;
+    if(w.price!=null){total+=w.price;if(n>0){num+=w.price;den+=n}}
+  });
+  return {n:items.length,act:act,arc:arc,wears:wears,avg:items.length?wears/items.length:0,total:total,cpw:den?num/den:null};
+}
+function rankRow(w,n,i,low){
+  return '<div class="rk'+(low?' low':'')+'"><span class="no">'+(i+1)+'</span><span class="th">'+(w.hasPhoto?'<img data-wid="'+esc(w.id)+'" alt="">':'')+'</span><div class="info"><div class="t">'+esc(w.name)+'</div><div class="s">'+esc((w.brand?w.brand+' · ':'')+w.cat+(w.price!=null?' · '+yen(w.price):''))+'</div></div><span class="bd">'+n+'回</span></div>';
+}
+function renderStat(){
+  var S=statSummary();
+  $('statCards').innerHTML=
+    '<div class="sc"><div class="l">総服数</div><div class="v">'+S.n+'<small>着</small></div><div class="s">アクティブ '+S.act+' / アーカイブ '+S.arc+'</div></div>'
+   +'<div class="sc"><div class="l">総着用回数</div><div class="v">'+S.wears.toLocaleString('ja-JP')+'<small>回</small></div><div class="s">1着あたり平均 '+(S.avg?S.avg.toFixed(1):'0')+'回</div></div>'
+   +'<div class="sc"><div class="l">ワードローブ総額</div><div class="v">'+yen(S.total)+'</div><div class="s">購入価格の合計</div></div>'
+   +'<div class="sc"><div class="l">平均コストパフォーマンス</div><div class="v g">'+(S.cpw!=null?yen(S.cpw)+'<small>/回</small>':'—')+'</div><div class="s">着た服の購入額÷着用回数</div></div>';
+  var cat=$('sCat').value||'all',st=$('sStat').value||'active';
+  var cnt=wearCounts(),last=lastWornMap();
+  var items=db.wardrobe.filter(function(w){return (cat==='all'||w.cat===cat)&&(st==='all'||(st==='archived')===!!w.archived)});
+  var top=items.filter(function(w){return (cnt[w.id]||0)>0}).sort(function(a,b){return (cnt[b.id]||0)-(cnt[a.id]||0)}).slice(0,10);
+  var low=items.slice().sort(function(a,b){
+    var d=(cnt[a.id]||0)-(cnt[b.id]||0);if(d)return d;
+    return (last[a.id]||'0000')<(last[b.id]||'0000')?-1:1; // 同じ回数なら、最後に着たのが古い方を先に
+  }).slice(0,10);
+  var none='<div class="hint">まだ確定した記録がありません。履歴で着た服を「確定」すると、ここに出ます。</div>';
+  $('rankTop').innerHTML='<h2>よく着るランキング</h2><div class="hint" style="margin:-6px 0 6px">着用回数が多い服 TOP10</div>'+(top.length?top.map(function(w,i){return rankRow(w,cnt[w.id]||0,i,false)}).join(''):none);
+  $('rankLow').innerHTML='<h2>着ていないランキング</h2><div class="hint" style="margin:-6px 0 6px">着用回数が少ない服 TOP10</div>'+(low.length?low.map(function(w,i){return rankRow(w,cnt[w.id]||0,i,true)}).join(''):'<div class="hint">服がありません。</div>');
+  $('tab-stat').querySelectorAll('img[data-wid]').forEach(function(im){loadImg(im,im.getAttribute('data-wid'),'wphotos')});
+}
+$('sCat').innerHTML='<option value="all">全カテゴリ</option>'+CATS.map(function(c){return '<option>'+esc(c)+'</option>'}).join('');
+$('sCat').addEventListener('change',renderStat);$('sStat').addEventListener('change',renderStat);
 
 /* ---------- 設定 ---------- */
 function renderSet(){
@@ -1108,10 +1338,11 @@ $('importFile').addEventListener('change',function(e){
 
 /* ---------- タブ・更新 ---------- */
 function showTab(t){
-  ['shot','hist','ward','set'].forEach(function(k){$('tab-'+k).classList.toggle('hide',k!==t)});
+  ['shot','hist','ward','stat','set'].forEach(function(k){$('tab-'+k).classList.toggle('hide',k!==t)});
   document.querySelectorAll('.tabs button').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-t')===t)});
   if(t==='hist')renderHist();
   if(t==='set')renderSet();
+  if(t==='stat')renderStat();
   if(t==='ward'){$('wFormView').classList.add('hide');$('wListView').classList.remove('hide');renderWard()}
 }
 document.querySelector('.tabs').addEventListener('click',function(e){var b=e.target.closest('button');if(b)showTab(b.getAttribute('data-t'))});
@@ -1168,7 +1399,7 @@ function pushTomb(id){
 function pushWard(w){
   if(!fb.user)return Promise.resolve();
   return (w.hasPhoto?photoGet(w.id,'wphotos').then(function(b){return b?blobToDataUrl(b):null}):Promise.resolve(null)).then(function(u){
-    return wardCol().doc(w.id).set(clean({id:w.id,name:w.name,cat:w.cat,color:w.color||'',brand:w.brand||'',len:w.len||'',bgDone:!!w.bgDone,price:w.price==null?null:w.price,bought:w.bought||'',sold:w.sold==null?null:w.sold,hasPhoto:!!u,photo:u||null,updatedAt:w.updatedAt||0,deleted:false}));
+    return wardCol().doc(w.id).set(clean({id:w.id,name:w.name,cat:w.cat,color:w.color||'',brand:w.brand||'',len:w.len||'',bgDone:!!w.bgDone,archived:!!w.archived,price:w.price==null?null:w.price,bought:w.bought||'',sold:w.sold==null?null:w.sold,hasPhoto:!!u,photo:u||null,updatedAt:w.updatedAt||0,deleted:false}));
   });
 }
 function pushWTomb(id){
@@ -1228,7 +1459,7 @@ function applyRemoteWard(d){
   if((db.wtombs[id]||0)>rAt)return pushWTomb(id);
   if(loc&&(loc.updatedAt||0)>rAt)return pushWard(loc);
   if(loc&&(loc.updatedAt||0)===rAt)return Promise.resolve();
-  var w={id:id,name:d.name||'',cat:d.cat||'その他',color:d.color||'',brand:d.brand||'',len:d.len||'',bgDone:!!d.bgDone,price:d.price==null?null:d.price,bought:d.bought||'',sold:d.sold==null?null:d.sold,hasPhoto:!!d.photo,updatedAt:rAt};
+  var w={id:id,name:d.name||'',cat:d.cat||'その他',color:d.color||'',brand:d.brand||'',len:d.len||'',bgDone:!!d.bgDone,archived:!!d.archived,price:d.price==null?null:d.price,bought:d.bought||'',sold:d.sold==null?null:d.sold,hasPhoto:!!d.photo,updatedAt:rAt};
   if(loc)db.wardrobe[i]=w;else db.wardrobe.push(w);
   delete db.wtombs[id];save();delete wurl[id];
   if(!d.photo)return Promise.resolve();
@@ -1247,6 +1478,7 @@ function refreshUI(){
   renderSet();
   if(!$('tab-hist').classList.contains('hide'))renderHist();
   if(!$('tab-ward').classList.contains('hide')&&!$('wListView').classList.contains('hide'))renderWard();
+  if(!$('tab-stat').classList.contains('hide'))renderStat();
 }
 function startSync(){
   fb.warned=false;
